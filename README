@@ -1,0 +1,19 @@
+#Water's study for python !
+#requests-->scrapy-->
+#xlrd/xlwt-->pandas-->
+
+
+##education:员工教育信息
+	----分别使用xlrd与pandas分别处理，merge_xls与merge_xlsx_pandas
+##experience:员工工作经历
+	----分别使用xlrd与pandas分别处理，merge_xls与merge_xlsx_pandas
+##check_proxy:从网上下载代理ip，并检测是否有效
+	----检测方法主要是用get请求 www.baidu.com
+	----下载代理ip使用scrapy中的KDL爬虫
+	
+##check_inputtax_api：测试发票查验接口调用
+	----使用post请求接口
+	----json、base64来解析数据
+	----发生了sslerror，并解决（见代码）
+
+#scrapy

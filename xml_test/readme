@@ -1,0 +1,3 @@
+# 练习传入xml多个节点，并根据内容生成xml
+# generateCase:
+	##读取excel文件，并根据各列生成对应的xml，同时将xml脚本写入到case、test、check、pool中

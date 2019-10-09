@@ -1,0 +1,59 @@
+第一大题**************************************
+create table s
+(
+ sid INT,
+sname char,
+sdate DATE,
+sd CHAR
+)
+
+create table c
+(
+ cid CHAR,
+cn char,
+ct CHAR,
+cd CHAR
+)
+
+create table sc
+(
+ cid INT,
+sid INT,
+g INT
+)
+
+第一题
+select sname,sd
+from s,sc
+where s.sid=sc.sid and cid='c1012'
+第二题
+select sname,sc.sid
+from s,sc,c
+where s.sid=sc.sid and c.cid=sc.cid and cn='c语言'
+第三题
+select sname,sc.sid
+from s,sc
+where s.sid=sc.sid 
+GROUP BY sid
+having(COUNT(cid)>5)
+第四题
+select sname,sd
+from s,sc
+where s.sid=sc.sid and g<60 or g=NULL
+
+第二大题*********************************************************************8
+
+DECLARE @InfoID bigint
+select  @InfoID=0
+declare My_Cursor cursor 
+FOR
+select  *
+from a
+OPEN My_Cursor;
+ WHILE @InfoID <=10
+     BEGIN
+         FETCH absolute 30 FROM My_Cursor 
+          select @InfoID=@InfoID+1
+     END
+ CLOSE My_Cursor; 
+ DEALLOCATE My_Cursor; 
