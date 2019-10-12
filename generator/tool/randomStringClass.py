@@ -6,12 +6,10 @@
 
 
 import random,math,string,os,time
-import logging
+import logging,configparser
 
-#日志配置
-logging.basicConfig(level = logging.DEBUG,format = '%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
+# 配置文件路径
+CONFIG_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"config","generator.ini")
 
 class GetString:
 
@@ -21,49 +19,57 @@ class GetString:
         chinese_path = os.path.join(self.data_path, 'chinese.config')
         fanti_path = os.path.join(self.data_path, 'fanti.config')
         nanti_path = os.path.join(self.data_path, 'nanti.config')
-        #加载常用汉字
+        # 加载generator.ini中datetime_format
+        config = configparser.RawConfigParser()
+        config.read(CONFIG_FILE,encoding="utf-8")  # 读取文件
+        self.datetime_format = config.get("template", "datetime_format")
+        # 日志配置
+        log_level = int(config.get("logging", "level"))
+        logging.basicConfig(level=log_level, format='%(asctime)s - %(levelname)s - %(message)s')
+        self.logger = logging.getLogger(__name__)
+        # 加载常用汉字
         f1 = open(chinese_path, 'r', encoding='UTF-8')
         self.chineses = f1.readline().replace(' ','')
-        # logger.debug(self.chineses[:10])
-        logger.debug("chinese is ok")
+        # self.logger.debug(self.chineses[:10])
+        self.logger.debug("chinese is ok")
         f1.close()
-        #加载常用繁体字
+        # 加载常用繁体字
         f2 = open(fanti_path, 'r', encoding='UTF-8')
         self.fantis = f2.readline()
-        # logger.debug(self.fantis[1:2])
-        logger.debug("fantizi is ok")
+        # self.logger.debug(self.fantis[1:2])
+        self.logger.debug("fantizi is ok")
         f2.close()
         #加载常用难检字
         f3 = open(nanti_path, 'r', encoding='UTF-8')
         self.nantis = f3.readline()
-        # logger.debug(self.nantis[1:10])
-        logger.debug("nantizi is ok")
+        # self.logger.debug(self.nantis[1:10])
+        self.logger.debug("nantizi is ok")
         f3.close()
         #加载数字
         self.numbers = string.digits
-        # logger.debug(self.numbers)
-        logger.debug("number is ok")
+        # self.logger.debug(self.numbers)
+        self.logger.debug("number is ok")
         #加载全角数字
         self.qj_numbers = "０１２３４５６７８９"
-        # logger.debug(self.qj_numbers)
-        logger.debug("quanjiao number is ok")
+        # self.logger.debug(self.qj_numbers)
+        self.logger.debug("quanjiao number is ok")
         #加载小写字母
         self.lower_alphabet = string.ascii_lowercase
-        # logger.debug(self.lower_alphabet)
-        logger.debug("lower alphabet is ok")
+        # self.logger.debug(self.lower_alphabet)
+        self.logger.debug("lower alphabet is ok")
         #加载大写字母
         self.upper_alphabet = string.ascii_uppercase
-        # logger.debug(self.upper_alphabet)
-        logger.debug("upper alphabet is ok")
+        # self.logger.debug(self.upper_alphabet)
+        self.logger.debug("upper alphabet is ok")
         #加载大小写字母
         self.all_alphabet = string.ascii_letters
-        # logger.debug(self.all_alphabet)
-        logger.debug("all alphabet is ok")
+        # self.logger.debug(self.all_alphabet)
+        self.logger.debug("all alphabet is ok")
         #加载特殊特号
         self.symbols = string.punctuation
-        # logger.debug(self.symbols)
-        logger.debug("symbol is ok")
-        self.strings = list()
+        # self.logger.debug(self.symbols)
+        self.logger.debug("symbol is ok")
+        # self.strings = list()
 
 
     def _random_count(self,sort,length):
@@ -97,7 +103,7 @@ class GetString:
         """
         results = ""
         sort_count = self._random_count(sort,length)
-        logger.debug(sort_count)
+        self.logger.debug(sort_count)
         # 添加数字
         result = random.choices(self.numbers,k=sort_count.get('SZ',0))
         # 添加大写字母
@@ -111,7 +117,7 @@ class GetString:
         # 添加繁体
         result.extend(random.choices(self.fantis,k=sort_count.get('FT',0)))
         # 添加特殊符号
-        result.extend(random.choices(self.fantis, k=sort_count.get('FH', 0)))
+        result.extend(random.choices(self.symbols, k=sort_count.get('FH', 0)))
         # 添加全角数字
         result.extend(random.choices(self.qj_numbers, k=sort_count.get('QJSZ', 0)))
         # 打乱顺序
@@ -123,8 +129,8 @@ class GetString:
     def _random_int_and_double(self,ninteger=1,ndigit=0):
         """
         按位置生成小数、浮点类型
-        :param ninteger:
-        :param ndigit:
+        :param ninteger:整数位数
+        :param ndigit:小数位数
         :return:
         """
         results = round(random.random() + random.randint(1,10**ninteger-1),ndigit)
@@ -133,7 +139,7 @@ class GetString:
 
     def _random_datetime(self,start_year,end_year):
         """
-        生成日期："2019-08-11 14:17:39"
+        生成此期间随机日期："2019-08-11 14:17:39"
         :param start_year:
         :param end_year:
         :return:
@@ -144,12 +150,17 @@ class GetString:
         end = time.mktime(a2)
         t = random.randint(start, end)
         date_touple = time.localtime(t)
-        result = time.strftime("%Y-%m-%d %H:%M:%S", date_touple)
+        result = time.strftime(self.datetime_format, date_touple)
         return result
 
 
-    # 生成VARCHAR的通用测试用例
     def _varchar_case(self,length):
+        """
+        生成VARCHAR的通用测试用例
+        ??后续考虑可以根据配置文件中用例类型选择如下类型
+        :param length:
+        :return:
+        """
         length = int(length)
         results = list()
         # 1生成length位的数字
@@ -215,7 +226,245 @@ class GetString:
         # 26生成length-1位的小写字母
         if length - 1 >= 1:
             results.append([f"生成{length-1}位的小写字母F", self._random_string_multiple(['ZMX'], length - 1)])
-        logger.info(results)
+        self.logger.info(results)
+        return results
+
+
+    def _char_case(self,length):
+        """
+        生成INT的通用测试用例
+        :return:
+        """
+        length = int(length)
+        results = list()
+        # 1生成length位的数字
+        results.append([f"生成{length}位的数字T", self._random_string_multiple(['SZ'], length)])
+        # 2生成length+1位的数字
+        results.append([f"生成{length+1}位的数字F", self._random_string_multiple(['SZ'], length + 1)])
+        # 3生成length位的数字（两边有空格）
+        results.append([f"生成{length}位的数字（两边有空格）F", "   " + self._random_string_multiple(['SZ'], length) + "  "])
+        # 4生成length位的数字（中间有空格）
+        result = self._random_string_multiple(['SZ'], length)
+        results.append([f"生成{length}位的数字（中间有空格）F",
+                        result[:math.floor(length / 2)] + "   " + result[math.floor(length / 2):length]])
+        # 5生成length位的大写字母
+        results.append([f"生成{length}位的大写字母T", self._random_string_multiple(['ZMD'], length)])
+        # 6生成length+1位的大写字母
+        results.append([f"生成{length+1}位的大写字母F", self._random_string_multiple(['ZMD'], length + 1)])
+        # 7生成length位的小写字母
+        results.append([f"生成{length}位的小写字母F", self._random_string_multiple(['ZMX'], length)])
+        # 8生成length+1位的小写字母
+        results.append([f"生成{length+1}位的小写字母F", self._random_string_multiple(['ZMX'], length + 1)])
+        # 9生成length位的小写字母、数字
+        if length >= 2:
+            results.append([f"生成{length}位的小写字母、数字F", self._random_string_multiple(['ZMX', 'SZ'], length)])
+        # 10生成length+1位的小写字母、数字
+        if length + 1 >= 2:
+            results.append([f"生成{length+1}位的小写字母、数字F", self._random_string_multiple(['ZMX', 'SZ'], length + 1)])
+        # 11生成length位大写字母、数字
+        if length >= 2:
+            results.append([f"生成{length}位大写字母、数字F", self._random_string_multiple(['ZMD', 'SZ'], length)])
+        # 12生成length+1位大写字母、数字
+        if length + 1 >= 2:
+            results.append([f"生成{length+1}位大写字母、数字F", self._random_string_multiple(['ZMD', 'SZ'], length + 1)])
+        # 13生成length位大小写字母、数字
+        if length >= 3:
+            results.append([f"生成{length}位大小写字母、数字F", self._random_string_multiple(['ZMD', 'ZMX', 'SZ'], length)])
+        # 14生成length位全角数字
+        results.append([f"生成{length}位全角数字F", self._random_string_multiple(['QJSZ'], length)])
+        # 15生成length位大小写字母
+        if length >= 2:
+            results.append([f"生成{length}位大小写字母F", self._random_string_multiple(['ZMD', 'ZMX'], length)])
+        # 16生成length位的汉字
+        results.append([f"生成{length}位的汉字F", self._random_string_multiple(['HZ'], length)])
+        # 17生成length+1位的汉字
+        results.append([f"生成{length+1}位的汉字F", self._random_string_multiple(['HZ'], length + 1)])
+        # 18生成length位的繁体字
+        results.append([f"生成{length}位的繁体字F", self._random_string_multiple(['FT'], length)])
+        # 19生成length位的难体字
+        results.append([f"生成{length}位的难体字F", self._random_string_multiple(['NT'], length)])
+        # 20生成length位的特殊符号
+        results.append([f"生成{length}位的特殊符号F", self._random_string_multiple(['FH'], length)])
+        # 21生成空值
+        results.append(["生成空值F", ''])
+        # 22生成null值
+        results.append(["生成null值F", 'null'])
+        # 23sql注入 "or"1"="1
+        results.append(["sql注入F", self._random_string_multiple(['SZ'], length) + "''or''1''=''1"])
+        # 24超长位数数字
+        results.append([f"生成超长位数数字T", self._random_string_multiple(['SZ'], length + length)])
+        # 25值为0
+        results.append([f"值为0T", '0'])
+        # 26值为1
+        results.append([f"值为1T", '1'])
+        # 27值为2
+        results.append([f"值为2T", '2'])
+        # 28生成length-1位的数字
+        if length - 1 >= 1:
+            results.append([f"生成{length-1}位的数字F", self._random_string_multiple(['SZ'], length - 1)])
+        # 29生成length-1位的大写字母
+        if length - 1 >= 1:
+            results.append([f"生成{length-1}位的大写字母F", self._random_string_multiple(['ZMD'], length - 1)])
+        # 30生成length-1位的小写字母
+        if length - 1 >= 1:
+            results.append([f"生成{length-1}位的小写字母F", self._random_string_multiple(['ZMX'], length - 1)])
+        self.logger.debug(results)
+        return results
+
+
+    def _datetime_case(self,length=19):
+        """
+        生成DATETIME的通用测试用例
+        :param length: "2019-08-11 14:17:39"共19位
+        :return:
+        """
+        results = list()
+        f = lambda t: time.strftime(self.datetime_format,time.localtime(time.mktime(t)))
+        # 1 2019年正确日期时间
+        results.append([f"2019年正确日期T", self._random_datetime(2019, 2019)])
+        # 2 错误月13月
+        results.append([f"错误月13月", f((2018,12,11,14,17,39,1,1,0)).replace("12","13")])
+        # 3 错误日12月32日
+        results.append([f"错误日12月32日", f((2018,12,31,11,10,55,1,1,0)).replace("31","32")])
+        # 4 错误时25时
+        results.append([f"错误时25时", f((2019,5,11,23,1,59,1,1,0)).replace("23","25")])
+        # 5 错误分60分
+        results.append([f"错误分60分", f((2019,9,11,0,55,39,1,1,0)).replace("55","60")])
+        # 6 错误秒60秒
+        results.append([f"错误秒60秒", f((2018,11,11,11,11,55,1,1,0)).replace("55","60")])
+        # 7 不存在的2月29日
+        results.append([f"不存在的2月29日", f((2019,2,27,1,18,40,1,1,0)).replace("27","29")])
+        # 8 秒有小数
+        if f((2017,1,11,14,17,39,1,1,0)).find("39") != -1:
+            results.append([f"秒有小数", f((2017,1,11,14,17,39,1,1,0)).replace("39","39.33")])
+        # 9 正确日期时间前后有空格
+        results.append([f"正确日期时间前后有空格", "    " + f((2019,1,11,22,1,37,1,1,0)) + "      "])
+        # 10 正确日期与时间之间多个空格
+        results.append([f"正确日期与时间之间多个空格", f((2019,3,11,8,22,9,1,1,0)).replace("11","11     ")])
+        # 11 正确日期与时间之间没有空格
+        if f((2019,3,31,8,22,9,1,1,0)).find(" ") != -1:
+            results.append([f"正确日期与时间之间没有空格", f((2019,3,31,8,22,9,1,1,0)).replace(" ","")])
+        # 12 年份前多一个0
+        results.append([f"年份前多一个0", "0" + f((2019,9,11,10,18,39,1,1,0))])
+        # 13 日期为length位小写字母
+        results.append([f"日期为{length}位的小写字母F", self._random_string_multiple(['ZMX'], length)])
+        # 14 日期为length位的大写字母
+        results.append([f"日期为{length}位的大写字母F", self._random_string_multiple(['ZMD'], length)])
+        # 15 日期为length位的小写字母、数字
+        results.append([f"日期为{length}位的小写字母、数字F", self._random_string_multiple(['ZMX', 'SZ'], length)])
+        # 16 日期为length位大写字母、数字
+        results.append([f"日期为{length}位大写字母、数字F", self._random_string_multiple(['ZMD', 'SZ'], length)])
+        # 17 日期为length位全角数字
+        results.append([f"日期为{length}位全角数字F", self._random_string_multiple(['QJSZ'], length)])
+        # 18 日期为length位的汉字
+        results.append([f"日期为{length}位的汉字F", self._random_string_multiple(['HZ'], length)])
+        # 19 日期为length位的繁体字
+        results.append([f"日期为{length}位的繁体字F", self._random_string_multiple(['FT'], length)])
+        # 20 日期为length位的难体字
+        results.append([f"日期为{length}位的难体字F", self._random_string_multiple(['NT'], length)])
+        # 21 日期为length位的特殊符号
+        results.append([f"日期为{length}位的特殊符号F", self._random_string_multiple(['FH'], length)])
+        # 22 日期为空值
+        results.append(["日期为空值F", ''])
+        # 23 日期为null值
+        results.append(["日期为null值F", 'null'])
+        # 24 sql注入 "or"1"="1
+        results.append(["sql注入F", self._random_datetime(2019, 2019) + "''or''1''=''1"])
+        self.logger.debug(results)
+        return results
+
+
+    def _int_case(self,length):
+        """
+        生成CHAR的通用测试用例
+        :return:
+        """
+        length = int(length)
+        results = list()
+        # 1生成length位的正数
+        results.append([f"生成{length}位的正数T", int(self._random_int_and_double(length))])
+        # 2生成length+1位的正数
+        results.append([f"生成{length+1}位的正数F", int(self._random_int_and_double(length + 1))])
+        # 3生成length位的正数（两边有空格）
+        results.append([f"生成{length}位的正数（两边有空格）F", "   " + str(int(self._random_int_and_double(length))) + "  "])
+        # 4生成length位的负数
+        results.append([f"生成{length}位的负数F", int(self._random_int_and_double(length)) * -1])
+        # 5生成length+1位的负数
+        results.append([f"生成{length+1}位的负数F", int(self._random_int_and_double(length + 1)) * -1])
+        # 6生成length位的小写字母
+        results.append([f"生成{length}位的小写字母F", self._random_string_multiple(['ZMX'], length)])
+        # 7生成length位的大写字母
+        results.append([f"生成{length}位的大写字母F", self._random_string_multiple(['ZMD'], length)])
+        # 8生成length位的小写字母、数字
+        if length >= 2:
+            results.append([f"生成{length}位的小写字母、数字F", self._random_string_multiple(['ZMX', 'SZ'], length)])
+        # 9生成length位大写字母、数字
+        if length >= 2:
+            results.append([f"生成{length}位大写字母、数字F", self._random_string_multiple(['ZMD', 'SZ'], length)])
+        # 10生成length位全角数字
+        results.append([f"生成{length}位全角数字F", self._random_string_multiple(['QJSZ'], length)])
+        # 11生成length位的汉字
+        results.append([f"生成{length}位的汉字F", self._random_string_multiple(['HZ'], length)])
+        # 12生成length位的繁体字
+        results.append([f"生成{length}位的繁体字F", self._random_string_multiple(['FT'], length)])
+        # 13生成length位的难体字
+        results.append([f"生成{length}位的难体字F", self._random_string_multiple(['NT'], length)])
+        # 14生成length位的特殊符号
+        results.append([f"生成{length}位的特殊符号F", self._random_string_multiple(['FH'], length)])
+        # 15生成空值
+        results.append(["生成空值F", ''])
+        # 16生成null值
+        results.append(["生成null值F", 'null'])
+        # 17sql注入 "or"1"="1
+        results.append(["sql注入F", str(self._random_int_and_double(1)) + "''or''1''=''1"])
+        return results
+
+
+    def _double_case(self, length):
+        """
+        生成DOUBLE的通用测试用例
+        :param length:数字总位数（含小数位数）
+        :return:
+        """
+        length = int(length)
+        results = list()
+        ndigit = 8 #小数位数
+        # 1生成length ndigit位的正小数
+        results.append([f"生成{length},{ndigit}位的正小数T", self._random_int_and_double(length - ndigit, ndigit)])
+        # 2生成length+1位的正小数
+        # results.append([f"生成{length+1}位的正数F", self._random_int_and_double(length+1,ndigit)])
+        # 3生成length位的正小数（两边有空格）
+        results.append([f"生成{length},{ndigit}位的正小数（两边有空格）F","   " + str(self._random_int_and_double(length - ndigit, ndigit)) + "  "])
+        # 4生成length位的负小数
+        results.append([f"生成{length},{ndigit}位的负小数F", self._random_int_and_double(length - ndigit, ndigit) * -1])
+        # 5生成length+1位的负小数
+        # results.append([f"生成{length+1}位的负数F", self._random_int_and_double(length+1,ndigit) * -1])
+        # 6生成length位的小写字母
+        results.append([f"生成{length}位的小写字母F", self._random_string_multiple(['ZMX'], length)])
+        # 7生成length位的大写字母
+        results.append([f"生成{length}位的大写字母F", self._random_string_multiple(['ZMD'], length)])
+        # 8生成length位的小写字母、数字
+        if length >= 2:
+            results.append([f"生成{length}位的小写字母、数字F", self._random_string_multiple(['ZMX', 'SZ'], length)])
+        # 9生成length位大写字母、数字
+        if length >= 2:
+            results.append([f"生成{length}位大写字母、数字F", self._random_string_multiple(['ZMD', 'SZ'], length)])
+        # 10生成length位全角数字
+        results.append([f"生成{length}位全角数字F", self._random_string_multiple(['QJSZ'], length)])
+        # 11生成length位的汉字
+        results.append([f"生成{length}位的汉字F", self._random_string_multiple(['HZ'], length)])
+        # 12生成length位的繁体字
+        results.append([f"生成{length}位的繁体字F", self._random_string_multiple(['FT'], length)])
+        # 13生成length位的难体字
+        results.append([f"生成{length}位的难体字F", self._random_string_multiple(['NT'], length)])
+        # 14生成length位的特殊符号
+        results.append([f"生成{length}位的特殊符号F", self._random_string_multiple(['FH'], length)])
+        # 15生成空值
+        results.append(["生成空值F", ''])
+        # 16生成null值
+        results.append(["生成null值F", 'null'])
+        # 17sql注入 "or"1"="1
+        results.append(["sql注入F", str(self._random_int_and_double(1, 3)) + "''or''1''=''1"])
         return results
 
 
@@ -224,47 +473,40 @@ class GetString:
         pass
 
 
-    def random_string_main(self,sort,length):
+    def random_string_main(self,sort,length=10):
         if sort.strip().upper() == "VARCHAR":
             string_list = self._varchar_case(length)
             # [['生成11位的数字', '34140688517'], ['生成12位的数字', '031856900374']]
         elif sort.strip().upper() == "CHAR":
             string_list = self._char_case(length)
         elif sort.strip().upper() == "DATETIME":
-            string_list = self._datetime_case()
+            string_list = self._datetime_case(length)
         elif sort.strip().upper() == "INT":
             string_list = self._int_case(length)
         elif sort.strip().upper() == "DOUBLE":
             string_list = self._double_case(length)
         else:
-            logger.error("输入的param_sort有误{}".format(d["param_sort"]))
+            self.logger.error("输入的sort值有误{}".format(sort))
+            raise SortError("输入的sort值有误：{}，程序终止！！".format(sort))
+
         return string_list
 
-if __name__=="__main__":
 
+class SortError(Exception):
+    def __init__(self, ErrorInfo):
+        super().__init__(self)  # 初始化父类
+        self.errorinfo = ErrorInfo
+
+    def __str__(self):
+        return self.errorinfo
+
+
+
+
+if __name__=="__main__":
     get_string = GetString()
     # results = get_string._random_string_multiple(["QJSZ","SZ","ZMX","ZMD","FT"],20)
     # results = get_string._random_string_multiple(["SZ"], 1)
-    results = get_string.random_string_main("VARCHAR",10)
+    results = get_string.random_string_main("datetime",20)
     print(results)
-    # get_string.random_int_and_double(2)
-# if __name__ == "__main__":
-#     sort_count = random_count(["SZ", "ZMX", "ZMD", "FT", "NT"], 100)
-#     print(sort_count)
-#     if sum(sort_count.values()) == 100:
-#         print("right!!!")
-#     # 测试length=1的情况
-#     sort_count = random_count(["SZ"], 1)
-#     print(sort_count)
-#     # 测试length=2的情况
-#     sort_count = random_count(["SZ"], 2)
-#     print(sort_count)
-#     # 测试length=2的情况
-#     sort_count = random_count(["SZ", "ZMD"], 2)
-#     print(sort_count)
-#     # 测试length=3的情况
-#     sort_count = random_count(["SZ", "ZMX", "ZMD"], 3)
-#     print(sort_count)
-#     # 测试length=3的情况
-#     sort_count = random_count(["SZ", "ZMD"], 3)
-#     print(sort_count)
+

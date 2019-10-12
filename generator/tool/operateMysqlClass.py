@@ -3,40 +3,49 @@
 # Author: water
 # Date  : 2019/9/11
 
-import pymysql
-import logging
+import pymysql,configparser
+import logging,os
 
-#程序运行日志配置
-logging.basicConfig(level = logging.WARN,format = '%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.WARN)
 
 class OperateMysql:
-    def __init__(self,host="172.16.22.37",port=3306,user="root",password="Sa!@#$%^",database="51fppt_test"):
+    # 配置文件路径
+    CONFIG_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config", "generator.ini")
 
-        self.host = host
-        self.port = port
-        self.user = user
-        self.password = password
-        self.database = database
+    def __init__(self):
+
+        # 加载generator.ini
+        config = configparser.RawConfigParser()
+        config.read(CONFIG_FILE,encoding="utf-8")  # 读取文件
+        # 日志配置
+        log_level = int(config.get("logging", "level"))
+        logging.basicConfig(level=log_level, format='%(asctime)s - %(levelname)s - %(message)s')
+        self.logger = logging.getLogger(__name__)
+        # 加载数据库地址
+        host = config.get("mysql","host")
+        port = int(config.get("mysql","port"))
+        user = config.get("mysql","user")
+        password = config.get("mysql","password")
+        database = config.get("mysql","database")
+        self.logger.debug([host,port,user,password,database])
+
         #连接数据库
         self.db = pymysql.connect(
-            host=self.host,
-            port = self.port,
-            user = self.user,
-            password = self.password,
-            database = self.database
+            host=host,
+            port=port,
+            user=user,
+            password=password,
+            database=database
         )
         #使用cursor()方法创建一个游标对象
         self.cursor = self.db.cursor()
-        logger.warning("connect mysql successful!!")
+        self.logger.warning("connect mysql successful!!")
 
 
     #关闭游标和数据库的连接
     def close(self):
         self.cursor.close()
         self.db.close()
-        logger.warning("mysql closed!!")
+        self.logger.warning("mysql closed!!")
 
 
     def insert_sql(self,data):
@@ -44,10 +53,10 @@ class OperateMysql:
         # 插入数据
         sql = '''INSERT INTO step_data (case_id, step,test_desc,http_method,url_sql,out_put,request_sql_param,request_name) VALUES ('{case_id}','{step}','{test_desc}','{http_method}','{url_sql}','{out_put}','{request_sql_param}','{request_name}')'''
         sql = sql.format(**data)
-        logger.info(sql)
+        self.logger.info(sql)
         self.cursor.execute(sql)
         self.db.commit()
-        logger.warning(f"step:{data['step']}&&{data['request_name']}插入成功")
+        self.logger.warning(f"step:{data['step']}&&{data['request_name']}插入成功")
 
 
 if __name__ =="__main__":
