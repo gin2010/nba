@@ -7,14 +7,15 @@
 
 import random,math,string,os,time
 import logging,configparser
+#from logSetClass import Log
 
 # 配置文件路径
-CONFIG_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"config","generator.ini")
 
 class GetString:
 
     # 初始化并加载所有的类型的全部strings
-    def __init__(self):
+    def __init__(self,logger):
+        CONFIG_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config","generator.ini")
         self.data_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"config")
         chinese_path = os.path.join(self.data_path, 'chinese.config')
         fanti_path = os.path.join(self.data_path, 'fanti.config')
@@ -23,10 +24,22 @@ class GetString:
         config = configparser.RawConfigParser()
         config.read(CONFIG_FILE,encoding="utf-8")  # 读取文件
         self.datetime_format = config.get("template", "datetime_format")
+
         # 日志配置
+        self.logger = logger
+        """
+        20191012单独在每个文件中配置一份，会出现重复打印的问题
+        log_name = "generator.log"
+        log_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'log', log_name)
         log_level = int(config.get("logging", "level"))
+        log = Log(log_file,log_level)
+        self.logger = log.control_and_file()
+        """
+        """
+        单独日志配置于20191012替换，由于只能打印到控制台，无法输出到文件中
         logging.basicConfig(level=log_level, format='%(asctime)s - %(levelname)s - %(message)s')
         self.logger = logging.getLogger(__name__)
+        """
         # 加载常用汉字
         f1 = open(chinese_path, 'r', encoding='UTF-8')
         self.chineses = f1.readline().replace(' ','')
@@ -66,8 +79,8 @@ class GetString:
         # self.logger.debug(self.all_alphabet)
         self.logger.debug("all alphabet is ok")
         #加载特殊特号
-        self.symbols = string.punctuation
-        # self.logger.debug(self.symbols)
+        self.symbols = string.punctuation.replace("'","")
+        self.logger.debug(self.symbols)
         self.logger.debug("symbol is ok")
         # self.strings = list()
 
