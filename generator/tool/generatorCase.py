@@ -75,7 +75,14 @@ class Generator(object):
             d = dict()
             d['resquest_param'] = ws_case.cell(r, 0).value
             d['param_sort'] = ws_case.cell(r, 1).value
-            d['length'] = ws_case.cell(r, 2).value
+            self.logger.info(ws_case.cell(r, 2).value)
+            length = ws_case.cell(r, 2).value
+            if isinstance(length,str):
+                length = length.replace("，",",").split(",")
+                d['ndigit'] = int(length[1])
+                d['length'] = int(length[0])
+            else:
+                d['length'] = int(length)
             case_list.append(d)
         self.logger.debug(case_list)
         #读取common sheet
@@ -159,8 +166,15 @@ class Generator(object):
             #  {'resquest_param': 'kprq', 'param_sort': 'DATETIME', 'length': ''}]
             single_temp = copy.deepcopy(self.temp)
             # 修改模板中发票代码
+            # if len(d["length"].replace("，",",").split(","))==2 :
+            #     d["ndigit"] = d["length"].replace("，",",").split(",")[1]
+            # d["length"] = d["length"].replace("，",",").split(",")[0]
+            self.logger.debug(["d:",d])
             get_string = GetString(self.logger)
-            string_list = get_string.random_string_main(d["param_sort"],int(d["length"]))
+            if d.get("ndigit")==None:
+                string_list = get_string.random_string_main(d["param_sort"], d["length"])
+            else:
+                string_list = get_string.random_string_main(d["param_sort"],d["length"],d["ndigit"])
             for l in string_list:
                 step += 1
                 common_datas["step"] = step
