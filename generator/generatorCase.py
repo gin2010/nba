@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Date : 2019/09/27
 # @Author : water
-# @Version  : v1.0
+# @Version  : v1.1
 # @Desc  :自动生成单个字段的测试用例、根据excel表中的字段生成联合字段的测试用例及测试主流程
 
 
@@ -64,7 +64,10 @@ class Generator(object):
             d = dict()
             d['resquest_param'] = ws_case.cell(r, 0).value
             d['param_sort'] = ws_case.cell(r, 1).value
-            d['length'] = ws_case.cell(r, 2).value
+            length = ws_case.cell(r, 2).value.replace("，",",").split(",")
+            if len(length) == 2:
+                d['ndigit'] = length[1]
+            d['length'] = length[0]
             case_list.append(d)
         self.logger.debug(case_list)
         #读取common sheet
@@ -142,12 +145,12 @@ class Generator(object):
         # 连接mysql数据库
         opsql = OperateMysql()
         for d in case_datas:
-            # [{'resquest_param': 'fp_dm','param_sort': 'VARCHAR', 'length': '10'},
+            # [{'resquest_param': 'fp_dm','param_sort': 'VARCHAR', 'length': '10','ndigit':'2'},
             #  {'resquest_param': 'kprq', 'param_sort': 'DATETIME', 'length': ''}]
             single_temp = copy.deepcopy(self.temp)
             # 修改模板中发票代码
             get_string = GetString()
-            string_list = get_string.random_string_main(d["param_sort"],int(d["length"]))
+            string_list = get_string.random_string_main(d["param_sort"],int(d["length"]),int(d['ndigit']))
             for l in string_list:
                 step += 1
                 common_datas["step"] = step

@@ -3,12 +3,12 @@
 # @Author : water
 # @Version  : v1.1
 # @Desc  :
-import json,sys,os
+import json,sys,os,time
 # 添加tool工具包到系统变量中
 tool = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tool")
 sys.path.append(tool)
 from tool.generatorCase import Generator
-
+from tool.search_dict import search_dict_key
 
 
 class Generator_tjcx_kpcx(Generator):
@@ -52,7 +52,12 @@ class Generator_fs(Generator):
 
     # 修改父类的update_temp方法
     def update_temp(self,temp,step,fphm,inner_key,inner_value):
-        temp[inner_key] = inner_value
+        temp["head"]["pjdm"] = "24" + time.strftime("%y%m") + "000240"
+        if inner_key == "pjhm":
+            temp = search_dict_key(temp, inner_key, inner_value)
+        else:
+            temp = search_dict_key(temp, inner_key, inner_value)
+            temp["head"]["pjhm"] = int(fphm) + step
         return json.dumps(temp, ensure_ascii=False)
 
 

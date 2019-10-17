@@ -433,15 +433,15 @@ class GetString:
         return results
 
 
-    def _double_case(self, length):
+    def _double_case(self, length,ndigit):
         """
         生成DOUBLE的通用测试用例
         :param length:数字总位数（含小数位数）
+        :param ndigit:小数位数
         :return:
         """
         length = int(length)
         results = list()
-        ndigit = 8 #小数位数
         # 1生成length ndigit位的正小数
         results.append([f"生成{length},{ndigit}位的正小数T", self._random_int_and_double(length - ndigit, ndigit)])
         # 2生成length+1位的正小数
@@ -486,7 +486,7 @@ class GetString:
         pass
 
 
-    def random_string_main(self,sort,length=10):
+    def random_string_main(self,sort,length=10,ndigit=2):
         if sort.strip().upper() == "VARCHAR":
             string_list = self._varchar_case(length)
             # [['生成11位的数字', '34140688517'], ['生成12位的数字', '031856900374']]
@@ -497,7 +497,7 @@ class GetString:
         elif sort.strip().upper() == "INT":
             string_list = self._int_case(length)
         elif sort.strip().upper() == "DOUBLE":
-            string_list = self._double_case(length)
+            string_list = self._double_case(length,ndigit)
         else:
             self.logger.error("输入的sort值有误{}".format(sort))
             raise SortError("输入的sort值有误：{}，程序终止！！".format(sort))

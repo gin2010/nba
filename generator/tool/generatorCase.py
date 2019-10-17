@@ -107,7 +107,7 @@ class Generator(object):
     def update_temp(self,temp,step,fphm,inner_key,inner_value):
         """
         此方法只是更改最终传入到request_sql_param中内层报文的内容，由于不同的接口内层报文不一致，
-        因此将此方法改为抽象类，不同的接口通过修改配置文件中模板文件temp与模板类型
+        因此将此方法针对不同的接口报文类型**重写**，不同的接口通过修改配置文件中模板文件temp与模板类型
         发票采集模板使用：
             1修改发票号码、发票代码；
             2将内层报文参数inner_param的值修改为inner_param_value并返回
@@ -144,6 +144,8 @@ class Generator(object):
     def generate_single_case(self):
         '''
         生成单个字段的测试用例
+        temp里的值在update_temp里修改，
+        请求sql数据库（除request_sql_param外）全部在此函数里修改
         :return:
         '''
         single_case_path = os.path.join(self.generate_path,"data",self.single_case_excel)
