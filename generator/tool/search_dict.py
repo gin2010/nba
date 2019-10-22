@@ -105,7 +105,7 @@ def search_dict_key(temp,target_key,target_value):
     for k in temp:
         if k == target_key:
             temp[k] = target_value
-            print(f"if 中 {k}")
+            # print(f"if 中 {k}")
             break
         elif isinstance(temp[k], dict):
             search_dict_key(temp[k],target_key,target_value)

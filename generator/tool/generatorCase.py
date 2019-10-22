@@ -99,19 +99,47 @@ class Generator(object):
         return case_list, common_dict
 
 
+    def _read_multiple_excel(self,path):
+        """
+        读取multiple 用例excel表
+        :param path:multiple excel所在的路径
+        :return cases:
+        [{
+        "case_name": "CEZS_GZ编码表版本号为空但扣除额有值F",
+        "head": {"KPLX": "0", "DKBZ": "0", "SGBZ": "", "BMB_BBH": "","QD_BZ": "0","QDXMMC": ""},
+        "mx": [{"XMMC": "*谷物* 花生", "XMDJ": "", "XMJE": "1100", "SL": "0.03", "SE": "30",},
+            {"XMMC": "*谷物* 花生", "XMDJ": "", "XMJE": "1100", "SL": "0.03", "SE": "30",}]
+        },
+        {...}]
+        """
+        wb = xlrd.open_workbook(path)
+        # 读取case sheet
+        ws_case = wb.sheet_by_name("case")
+        cases = list()
+        max_row = ws_case.nrows
+        max_column = ws_case.ncols
+        self.logger.info(max_column)
+        for r in range(1, max_row):
+            case = dict()
+            case["case_name"] = ws_case.cell(r, 1).value
+            case['key'] = ws_case.cell(r, 2).value.split(sep="\n")
+            case['value'] = ws_case.cell(r, 3).value.split(sep="\n")
+            cases.append(case)
+        # 读取common sheet
+        ws_common = wb.sheet_by_name("common")
+        common_dict = dict()
+        common_dict["case_id"] = ws_common.cell(0, 1).value
+        common_dict["http_method"] = ws_common.cell(1, 1).value
+        common_dict["url_sql"] = ws_common.cell(2, 1).value
+        common_dict["step"] = ws_common.cell(3, 1).value
+        common_dict["test_desc"] = ws_common.cell(4, 1).value
+        common_dict["out_put"] = ws_common.cell(5, 1).value
+        common_dict["fphm_start"] = ws_common.cell(6, 1).value
+        self.logger.debug(common_dict)
+        return cases, common_dict
 
-    def _random_string(self,sort,minlen,maxlen):
-        '''
-        根据单个字段类型及长度区间，生成对应的值
-        :param sort:
-        :param minlen:
-        :param maxlen:
-        :return:
-        '''
-        pass
 
-
-    def update_temp(self,temp,step,fphm,inner_key,inner_value):
+    def update_temp_single(self,temp,step,fphm,inner_key,inner_value):
         """
         此方法只是更改最终传入到request_sql_param中内层报文的内容，由于不同的接口内层报文不一致，
         因此将此方法针对不同的接口报文类型**重写**，不同的接口通过修改配置文件中模板文件temp与模板类型
@@ -148,6 +176,31 @@ class Generator(object):
         return json.dumps(temp, ensure_ascii=False)
 
 
+    def update_temp_multiple(self,temp,step,fphm,inner_keys,inner_values):
+        """
+        此方法只是更改最终传入到request_sql_param中内层报文的内容，由于不同的接口内层报文不一致，
+        因此将此方法针对不同的接口报文类型**重写**，不同的接口通过修改配置文件中模板文件temp与模板类型
+        发票采集模板使用：
+            1修改发票号码、发票代码；
+            2将内层报文参数inner_param的值修改为inner_param_value并返回
+        :param temp:内层报文
+        :param step:测试用例step
+        :param fphm:发票号码
+        :param inner_key:内层报文中需要更新的key，是一个列表存放的
+        :param inner_value:内层报文中需要更新的key对应的value，是一个列表存放的
+        :return temp: 转换为json格式的内层报文
+        """
+        temp = copy.deepcopy(temp)
+        # 修改模板中发票号码
+        temp['head']['pjhm'] = int(fphm) + step
+        # 修改模板中发票代码
+        temp['head']['pjdm'] = "24" + time.strftime("%y%m") + "000241"
+        # 用inner_keys、inner_values里的值更新temp里对应的值
+        for i in range(len(inner_keys)):
+            temp = search_dict_key(temp, inner_key[i], inner_value[i])
+        return json.dumps(temp, ensure_ascii=False)
+
+
     def generate_single_case(self):
         '''
         生成单个字段的测试用例
@@ -162,13 +215,10 @@ class Generator(object):
         # 连接mysql数据库
         opsql = OperateMysql(self.logger)
         for d in case_datas:
+            # case_datas的结构如下：
             # [{'resquest_param': 'fp_dm','param_sort': 'VARCHAR', 'length': '10'},
             #  {'resquest_param': 'kprq', 'param_sort': 'DATETIME', 'length': ''}]
-            single_temp = copy.deepcopy(self.temp)
-            # 修改模板中发票代码
-            # if len(d["length"].replace("，",",").split(","))==2 :
-            #     d["ndigit"] = d["length"].replace("，",",").split(",")[1]
-            # d["length"] = d["length"].replace("，",",").split(",")[0]
+            # single_temp = copy.deepcopy(self.temp)
             self.logger.debug(["d:",d])
             get_string = GetString(self.logger)
             if d.get("ndigit")==None:
@@ -179,7 +229,7 @@ class Generator(object):
                 step += 1
                 common_datas["step"] = step
                 common_datas["request_name"] = str(d["resquest_param"]) + "--" + l[0]
-                common_datas["request_sql_param"] = self.update_temp(single_temp,step,common_datas["fphm_start"],d["resquest_param"], l[1])
+                common_datas["request_sql_param"] = self.update_temp_single(self.temp,step,common_datas["fphm_start"],d["resquest_param"], l[1])
                 opsql.insert_sql(common_datas)
             step += 40
         opsql.close()
@@ -190,14 +240,32 @@ class Generator(object):
         生成联合字段与主流程的测试用例
         :return:
         '''
-        pass
-
+        multiple_case_path = os.path.join(self.generate_path, "data", self.multiple_case_excel)
+        datas, commons = self._read_multiple_excel(multiple_case_path)
+        opsql = OperateMysql()
+        step = int(commons["step"])
+        for data in datas:
+            step += 1
+            commons["step"] = step
+            commons["request_name"] = data[0]
+            commons["request_sql_param"] = self.update_temp_multiple(self.temp,step,data["key"],data["value"])
+            self.logger.info(commons)
+            opsql.insert_sql(commons)
+        opsql.close()
+        self.logger.warning("------ end ------！")
 
 
 if __name__ =="__main__":
     # 测试generatorCase类
-    generate = Generator()
-    generate.generate_single_case()
+    # generate = Generator()
+    # generate.generate_single_case()
+
+    # 测试_read_multiple_excel
+    # generate = Generator()
+    # multiple_case_path = os.path.join(generate.generate_path, "data", generate.multiple_case_excel)
+    # print(multiple_case_path)
+    # datas, commons = generate._read_multiple_excel(multiple_case_path)
+    # print(datas)
 
     # 测试randomStringClass类
     # get_string = GetString(self.logger)

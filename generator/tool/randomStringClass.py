@@ -227,7 +227,7 @@ class GetString:
         # 21生成空值
         results.append(["生成空值F", ''])
         # 22生成null值
-        results.append(["生成null值F", 'null'])
+        results.append(["生成null值F", None])
         # 23sql注入 "or"1"="1
         results.append(["sql注入F", self._random_string_multiple(['SZ'], length) + "''or''1''=''1"])
         # 24生成length-1位的数字
@@ -301,7 +301,7 @@ class GetString:
         # 21生成空值
         results.append(["生成空值F", ''])
         # 22生成null值
-        results.append(["生成null值F", 'null'])
+        results.append(["生成null值F", None])
         # 23sql注入 "or"1"="1
         results.append(["sql注入F", self._random_string_multiple(['SZ'], length) + "''or''1''=''1"])
         # 24超长位数数字
@@ -380,7 +380,7 @@ class GetString:
         # 22 日期为空值
         results.append(["日期为空值F", ''])
         # 23 日期为null值
-        results.append(["日期为null值F", 'null'])
+        results.append(["日期为null值F", None])
         # 24 sql注入 "or"1"="1
         results.append(["sql注入F", self._random_datetime(2019, 2019) + "''or''1''=''1"])
         self.logger.debug(results)
@@ -427,7 +427,7 @@ class GetString:
         # 15生成空值
         results.append(["生成空值F", ''])
         # 16生成null值
-        results.append(["生成null值F", 'null'])
+        results.append(["生成null值F", None])
         # 17sql注入 "or"1"="1
         results.append(["sql注入F", str(self._random_int_and_double(1)) + "''or''1''=''1"])
         return results
@@ -475,7 +475,7 @@ class GetString:
         # 15生成空值
         results.append(["生成空值F", ''])
         # 16生成null值
-        results.append(["生成null值F", 'null'])
+        results.append(["生成null值F", None])
         # 17sql注入 "or"1"="1
         results.append(["sql注入F", str(self._random_int_and_double(1, 3)) + "''or''1''=''1"])
         return results

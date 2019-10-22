@@ -4,7 +4,7 @@
 # Date  : 2019/9/11
 
 import pymysql,configparser
-import logging,os
+import logging,os,json
 #from logSetClass import Log
 
 
@@ -70,18 +70,21 @@ class OperateMysql:
 
 
 if __name__ =="__main__":
-    opsql = OperateMysql()
-    case_id = 24230001
-    step = 9
+    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+    logger = logging.getLogger(__name__)
+    opsql = OperateMysql(logger)
+    case_id = 24230002
+    step = 11
     test_desc = "测试数据库2"
     http_method = "post"
     url_sql = ""
     out_put = ""
-    request_sql_param = {
+    request_sql_param = json.dumps({
         "YFPDM": "1238",
         "JQBH": "661505060904",
         "KPY": "开票员",
-        "SKY": "收款员",
+        "SKY": None,
+        # None值在插入数据库的时候会转成Null
         "FHR": "复核人",
         "SWJG_DM": "111019201",
         "SPHSL": "1",
@@ -90,7 +93,8 @@ if __name__ =="__main__":
         "XSF_DZ": "北京市海淀区春晖园2号楼",
         "XSF_DH": "123123123",
         "XSF_YH": "1236",
-        "XSF_YHZH": "招商银行"}
+        "XSF_YHZH": "招商银行"},ensure_ascii=False)
+
     request_name = 0
     data = {
         "case_id": case_id,
