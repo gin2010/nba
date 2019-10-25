@@ -10,6 +10,7 @@ import configparser,copy,time
 from operateMysqlClass import OperateMysql
 from randomStringClass import GetString
 from logSetClass import Log
+from tool.search_dict import search_dict_key
 
 class Generator(object):
 
@@ -197,7 +198,7 @@ class Generator(object):
         temp['head']['pjdm'] = "24" + time.strftime("%y%m") + "000241"
         # 用inner_keys、inner_values里的值更新temp里对应的值
         for i in range(len(inner_keys)):
-            temp = search_dict_key(temp, inner_key[i], inner_value[i])
+            temp = search_dict_key(temp, inner_keys[i], inner_values[i])
         return json.dumps(temp, ensure_ascii=False)
 
 
@@ -242,13 +243,14 @@ class Generator(object):
         '''
         multiple_case_path = os.path.join(self.generate_path, "data", self.multiple_case_excel)
         datas, commons = self._read_multiple_excel(multiple_case_path)
+        self.logger.debug(datas)
         opsql = OperateMysql(self.logger)
         step = int(commons["step"])
         for data in datas:
             step += 1
             commons["step"] = step
-            commons["request_name"] = data[0]
-            commons["request_sql_param"] = self.update_temp_multiple(self.temp,step,data["key"],data["value"])
+            commons["request_name"] = data['case_name']
+            commons["request_sql_param"] = self.update_temp_multiple(self.temp,step,commons["fphm_start"],data["key"],data["value"])
             self.logger.info(commons)
             opsql.insert_sql(commons)
         opsql.close()

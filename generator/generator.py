@@ -96,6 +96,6 @@ if __name__ == "__main__":
 
     # 非税接口
     generate = Generator_fs()
-    generate.generate_single_case()
-    # generate.generate_multiple_case()
+    #generate.generate_single_case()
+    generate.generate_multiple_case()
 
