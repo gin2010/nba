@@ -242,7 +242,7 @@ class Generator(object):
         '''
         multiple_case_path = os.path.join(self.generate_path, "data", self.multiple_case_excel)
         datas, commons = self._read_multiple_excel(multiple_case_path)
-        opsql = OperateMysql()
+        opsql = OperateMysql(self.logger)
         step = int(commons["step"])
         for data in datas:
             step += 1
@@ -268,6 +268,6 @@ if __name__ =="__main__":
     # print(datas)
 
     # 测试randomStringClass类
-    # get_string = GetString(self.logger)
-    # results = get_string.random_string_main("datetime",10)
-    # print(results)
+    get_string = GetString(self.logger)
+    results = get_string.random_string_main("datetime",10)
+    print(results)

@@ -74,8 +74,12 @@ class Generator_fs(Generator):
         if inner_key == "pjhm":
             temp = search_dict_key(temp, inner_key, inner_value)
         else:
+            # head等外层用
             # temp = search_dict_key(temp, inner_key, inner_value)
+            # zdyxmxx里的zdyitems层使用
             temp["zdyxmxx"]["zdyitems"][0] = search_dict_key(temp["zdyxmxx"]["zdyitems"][0], inner_key, inner_value)
+            # zdyxmxx里的xmbt层使用
+            # temp["zdyxmxx"]["xmbt"] = search_dict_key(temp["zdyxmxx"]["xmbt"], inner_key, inner_value)
             temp["head"]["pjhm"] = int(fphm) + step
         return json.dumps(temp, ensure_ascii=False)
 
@@ -93,5 +97,5 @@ if __name__ == "__main__":
     # 非税接口
     generate = Generator_fs()
     generate.generate_single_case()
-    generate.generate_multiple_case()
+    # generate.generate_multiple_case()
 
