@@ -2,11 +2,13 @@
 # @Date : 2019-8-28
 # @Author : water
 # @Desc  :实现传入字符类型与长度，返回固定长度的字符
-# @Version  : v0.1
+# @Version : v1.0
+#         增加Decimal来处理大整数与浮点数相加时候，小数点后面直接舍去
 
 
 import random,math,string,os,time
 import logging,configparser
+from decimal import Decimal
 #from logSetClass import Log
 
 # 配置文件路径
@@ -146,8 +148,10 @@ class GetString:
         :param ndigit:小数位数
         :return:
         """
-        results = round(random.random() + random.randint(1,10**ninteger-1),ndigit)
-        return results
+        results = Decimal(random.randint(1,10**ninteger))
+        if ndigit != 0:
+            results = results/(10**ndigit)
+        return str(results)
 
 
     def _random_datetime(self,start_year,end_year):

@@ -54,9 +54,9 @@ class Generator_fs(Generator):
     def update_temp_single(self,temp,step,fphm,inner_key,inner_value):
         temp = copy.deepcopy(temp)
         # 非税接口item只有“0006”与“0007”，zdyxmxx只有“0008”，head和jfxx都有
-        # temp["head"]["djbm"] = random.choice(("0006", "0007", "0008"))
+        temp["head"]["djbm"] = random.choice(("0006", "0007", "0008"))
         # temp["head"]["djbm"] = random.choice(("0006", "0007"))
-        temp["head"]["djbm"] = "0008"
+        # temp["head"]["djbm"] = "0008"
         if temp["head"]["djbm"] == "0006":
             # 住院票据开立
             temp["head"]["mbdm"] = "0006"
@@ -75,9 +75,9 @@ class Generator_fs(Generator):
             temp = search_dict_key(temp, inner_key, inner_value)
         else:
             # head等外层用
-            # temp = search_dict_key(temp, inner_key, inner_value)
+            temp = search_dict_key(temp, inner_key, inner_value)
             # zdyxmxx里的zdyitems层使用
-            temp["zdyxmxx"]["zdyitems"][0] = search_dict_key(temp["zdyxmxx"]["zdyitems"][0], inner_key, inner_value)
+            # temp["zdyxmxx"]["zdyitems"][0] = search_dict_key(temp["zdyxmxx"]["zdyitems"][0], inner_key, inner_value)
             # zdyxmxx里的xmbt层使用
             # temp["zdyxmxx"]["xmbt"] = search_dict_key(temp["zdyxmxx"]["xmbt"], inner_key, inner_value)
             temp["head"]["pjhm"] = int(fphm) + step
@@ -96,6 +96,5 @@ if __name__ == "__main__":
 
     # 非税接口
     generate = Generator_fs()
-    #generate.generate_single_case()
-    generate.generate_multiple_case()
-
+    generate.generate_single_case() #生成单个字段的用例
+    #generate.generate_multiple_case() # 生成多字段用例
