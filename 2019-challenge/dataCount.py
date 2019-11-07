@@ -20,14 +20,27 @@ class DataCount(object):
         self.logger = logging.getLogger(__name__)
 
     def _read_excel_to_clean(self):
+        '''
+        -->先读取数据；
+        -->合并sheet，并把sheet名作为日期列添加到每个表格中；
+        -->填充na值
+        -->拆分一个单元格中有多个值的情况（分隔符为"\n"）
+        :return:
+        '''
         wb = xlrd.open_workbook(self.excel_path)
-        #self.logger.debug(wb.sheet_names())
-        #sheets_list = wb.sheet_names()
-        datas = pd.read_excel(self.excel_path)
-        a = datas.at[3,"测试人员"]
-        self.logger.debug(a.split(sep="\n"))
-        #将测试人员列、工时列多值拆成不同的行中
-
+        self.logger.debug(wb.sheet_names())
+        sheets_list = wb.sheet_names()
+        # 将测试人员列、工时列多值拆成不同的行中
+        data = pd.read_excel(self.excel_path)
+        # 用上一行的数据替换掉na值，除第一行
+        data = data.fillna(method ="ffill")
+        # 第一行为na的替换为空
+        data = data.fillna("")
+        self.logger.debug(data.head(10))
+        # for sheet_index in range(len(sheets_list)):
+        #     datas = pd.read_excel(self.excel_path, sheet_name=sheet_index)
+        #     datas["日期"] = sheets_list[sheets_list]
+        #     self.logger.debug(a.split(sep="\n"))
 
     def _to_excel(self):
         pass
