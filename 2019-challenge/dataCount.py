@@ -7,8 +7,9 @@
 import xlrd,xlwt,os,logging
 import pandas as pd
 import numpy as np
-import re,time
-from xlutils.copy import copy
+import re,time,xlsxwriter
+from tool.mergeData import My_DataFrame
+
 
 ##配置文件
 LOG_LEVEL = 30  # DEBUG(10)<INFO(20)<WARN(30)<ERROR(40)<CRITICAL(50)
@@ -209,38 +210,104 @@ class DataCount(object):
         datas["工时"] = datas["工时"].fillna(0)
         # 测试人员为nan时，工时置为0
         datas.loc[pd.isna(datas["测试人员"]) == True, "工时"] = 0
-        self.logger.warning(datas)
-        datas.to_excel(self.total, sheet_name="total")
+        self.logger.debug(datas)
+        datas.to_excel(self.total, sheet_name="total",index=False)
         return datas
 
     # 对DataFrame中的数据进行查询、统计
-    def _data_analysis(self,datas,start,end):
+    def _data_analysis(self,data,start,end):
+        # data["2019-08":"2019-10"]
         data["期间"] = data["期间"].apply(str) #将期间列由int转为str
         data["期间"] = pd.to_datetime(data["期间"]) # 将str转为日期格式
         data["工时"] = data["工时"].apply(float) # 工时转为float
         data.set_index('期间', drop=True, inplace=True) #重置索引列，并将原索引列删除
-        data["2019-08":"2019-10"] #查询
-        pd.pivot_table(data1,index=["事业部"],columns=["事业部","工作项目/任务","测试人员"],values=["测试人员","工时"],aggfunc=[np.sum])
-        data.drop(['序号', '任务来源', '任务性质', '测试负责人', '研发负责人', '本周工作目标',
-                   '实际完成时间', '实际完成情况', '亮点', '问题点', '修改内容简述', '备注'])
+        self.logger.warning(type(data))
+        self.logger.warning(data)
+        data.drop(['序号', '任务来源', '任务性质', '测试负责人', '研发负责人', '本周工作目标','实际完成时间',
+                   '实际完成情况', '亮点', '问题点', '修改内容简述', '备注'],axis=1,inplace=True)
+        data1 = data[start:end]  # 取出从start到end期间的数据
         agg1 = {"工时":["sum"]}
         result = data1.groupby(["事业部", "工作项目/任务","测试人员"]).agg(agg1)
         result2 = data1.groupby(["事业部", "工作项目/任务"]).agg(agg1)
-        result["total"] = result2["工时"]
-        result.reset_index(level=[0, 1, 2], inplace=True)
-        result.set_index(["事业部", "工作项目/任务","测试人员","total"], drop=True, inplace=True)
-        pd.pivot_table(data1, index=["事业部", "测试产品线", "测试人员"], values=["工时"])
-        pd.pivot_table(data1, index=["事业部", "测试产品线", "测试人员"], values=["工时"], aggfunc=np.sum)
+        result3 = data1.groupby(["事业部"]).agg(agg1)
+        result["项目工时合计"] = result2["工时"]
+        result["事业部工时合计"] = result3["工时"]
+        # result.reset_index(level=[0, 1, 2], inplace=True)
+        # result.set_index(["事业部", "工作项目/任务","测试人员","total"], drop=True, inplace=True)
+        # pd.pivot_table(data1, index=["事业部", "测试产品线", "测试人员"], values=["工时"])
+        # pd.pivot_table(data1, index=["事业部", "测试产品线", "测试人员"], values=["工时"], aggfunc=np.sum)
         result.to_excel("./report.xls")
+
+
+    def _merge_cell(self, path, key_cols=[], merge_cols=[]):
+
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
+        wb2007 = xlsxwriter.Workbook(path)
+        worksheet2007 = wb2007.add_worksheet("sheet1")
+        self_copy = My_DataFrame(self, copy=True)
+        line_cn = self_copy.index.size
+        cols = list(self_copy.columns.values)
+        if all([v in cols for i, v in enumerate(key_cols)]) == False:  # 校验key_cols中各元素 是否都包含与对象的列
+            print("key_cols is not completely include object's columns")
+            return False
+        if all([v in cols for i, v in enumerate(merge_cols)]) == False:  # 校验merge_cols中各元素 是否都包含与对象的列
+            print("merge_cols is not completely include object's columns")
+            return False
+        format_top = wb2007.add_format({'border': 1, 'bold': True, 'text_wrap': True})
+        format_other = wb2007.add_format({'border': 1, 'valign': 'vcenter'})
+        for i, value in enumerate(cols):  # 写表头
+            # print(value)
+            worksheet2007.write(0, i, value, format_top)
+        # merge_cols=['B','A','C']
+        # key_cols=['A','B']
+        if key_cols == []:  # 如果key_cols 参数不传值，则无需合并
+            self_copy['RN'] = 1
+            self_copy['CN'] = 1
+        else:
+            # 以key_cols作为是否合并的依据
+            self_copy['RN'] = self_copy.groupby(key_cols, as_index=False).rank(method='first').ix[:, 0]
+            self_copy['CN'] = self_copy.groupby(key_cols, as_index=False).rank(method='max').ix[:, 0]
+        # print(self)
+        for i in range(line_cn):
+            if self_copy.ix[i, 'CN'] > 1:
+                # print('该行有需要合并的单元格')
+                for j, col in enumerate(cols):
+                    # print(self_copy.ix[i,col])
+                    # 哪些列需要合并
+                    if col in (merge_cols):
+                        if self_copy.ix[i, 'RN'] == 1:  # 合并写第一个单元格，下一个第一个将不再写
+                            ##合并单元格，根据LINE_SET[7]判断需要合并几个
+                            worksheet2007.merge_range(i + 1, j, i + int(self_copy.ix[i, 'CN']), j,
+                                                      self_copy.ix[i, col],
+                                                      format_other)
+                            # worksheet2007.write(i+1,j,df.ix[i,col])
+                        else:
+                            pass
+                        # worksheet2007.write(i+1,j,df.ix[i,j])
+                    else:
+                        worksheet2007.write(i + 1, j, self_copy.ix[i, col], format_other)
+                    # print(',')
+            else:
+                # print('该行无需要合并的单元格')
+                for j, col in enumerate(cols):
+                    # print(df.ix[i,col])
+                    worksheet2007.write(i + 1, j, self_copy.ix[i, col], format_other)
+
+        wb2007.close()
+        self_copy.drop('CN', axis=1)
+        self_copy.drop('RN', axis=1)
 
 
     def main(self):
         # 对周报中数据清洗、格式统一
-        self._clear_data()
-        # 合并两个部门的周报为一个excel
+        # self._clear_data()
+        # # 合并两个部门的周报为一个excel
         datas = self._merge_data([self.temp_xt,self.temp_ck])
-        # 查询数据出报表
-        #self._data_analysis(datas)
+        # # 查询数据出报表
+        self._data_analysis(datas,"2019-09","2019-11")
+        # 合并报表中的单元格
+        # data = pd.read_excel("./result.xls")
+        # self._merge_data()
 
 
 if __name__ =="__main__":
