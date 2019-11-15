@@ -8,7 +8,7 @@ import xlrd,xlwt,os,logging
 import pandas as pd
 import numpy as np
 import re,time,xlsxwriter
-from tool.mergeData import My_DataFrame
+
 
 
 ##配置文件
