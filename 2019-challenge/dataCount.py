@@ -6,8 +6,8 @@
 
 import xlrd,xlwt,os,logging
 import pandas as pd
-import numpy as np
-import re,time,xlsxwriter
+import re,time
+import configparser
 
 
 
@@ -15,6 +15,7 @@ import re,time,xlsxwriter
 LOG_LEVEL = 30  # DEBUG(10)<INFO(20)<WARN(30)<ERROR(40)<CRITICAL(50)
 TITLES = ['序号', '测试产品线', '工作项目/任务', '任务来源', '任务性质', '测试负责人', '研发负责人', '本周工作目标',
           '实际完成时间', '实际完成情况', '测试人员', '工时', '事业部', '亮点', '问题点', '修改内容简述', '备注']
+# 主程序所在的文件夹的路径
 DIR_PATH = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -30,6 +31,15 @@ class DataCount(object):
         self.logger = logging.getLogger(__name__)
         # 配置获取周报最大列数(由于从0开始，所以实际是17列)
         self.max_column = 16
+        config_name = 'data.config'
+        self.config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), config_name)
+        # 加载配置文件中的起始日期
+        config = configparser.RawConfigParser()
+        config.read(self.config_file, encoding="utf-8")
+        self.start = config.get("period", "start")
+        self.end = config.get("period", "end")
+        self.logger.debug(type(self.start))
+        self.report = os.path.join(DIR_PATH,"report"+self.start+"--"+self.end+".xls")
 
 
     def _open_excel(self,excel_name):
@@ -196,7 +206,7 @@ class DataCount(object):
             wb_data = xlrd.open_workbook(temp)
             sheets_list = wb_data.sheet_names()
             for sheet in sheets_list:
-                print(sheet)
+                self.logger.debug(sheet)
                 # skiprows=0代表读取跳过的行数为0行，不写代表不跳过标题
                 data = pd.read_excel(temp, sheet_name=sheet, skiprows=0, index=False,header=0,encoding='utf8')
                 datas = datas.append(data)
@@ -247,19 +257,24 @@ class DataCount(object):
         # result.set_index(["事业部", "工作项目/任务","测试人员","total"], drop=True, inplace=True)
         # pd.pivot_table(data1, index=["事业部", "测试产品线", "测试人员"], values=["工时"])
         # pd.pivot_table(data1, index=["事业部", "测试产品线", "测试人员"], values=["工时"], aggfunc=np.sum)
-        result.to_excel("./report.xls",index=True)
+        result.to_excel(self.report,index=True)
 
 
     def main(self):
         # 对周报中数据清洗、格式统一
+        if not os.path.exists(os.path.join(DIR_PATH, "temp")):
+            os.mkdir(os.path.join(DIR_PATH, "temp"))
         self._clear_data()
         # # 合并两个部门的周报为一个excel
         datas = self._merge_data([self.temp_xt,self.temp_ck])
         # # 查询数据出报表
-        self._data_analysis(datas,"2019-10","2019-11")
+        self._data_analysis(datas,self.start,self.end)
+        self.logger.warning("报表出具成功{}!!!".format(self.report))
 
 
 if __name__ =="__main__":
     result = DataCount()
     result.main()
+    input("输入回车结束")
+
 
