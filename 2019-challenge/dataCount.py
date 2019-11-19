@@ -6,7 +6,7 @@
 
 import xlrd,xlwt,os,logging
 import pandas as pd
-import re,time
+import re,time,shutil
 import configparser
 
 
@@ -40,7 +40,14 @@ class DataCount(object):
         self.end = config.get("period", "end")
         self.logger.debug(type(self.start))
         self.report = os.path.join(DIR_PATH,"report"+self.start+"--"+self.end+".xls")
-
+        # 加载配置文件中的报告部门
+        try:
+            self.ck_flag = int(config.get("depart", "ck"))
+            self.xt_flag = int(config.get("depart", "xt"))
+            self.logger.warning("{}--{}".format(self.ck_flag,self.xt_flag))
+        except Exception:
+            print("配置文件中“depart配置”输入错误！")
+            os._exit(0)
 
     def _open_excel(self,excel_name):
         excel_path = os.path.join(DIR_PATH, excel_name)
@@ -228,12 +235,14 @@ class DataCount(object):
     def _data_analysis(self,data):
         data["期间"] = data["期间"].apply(str) #将期间列由int转为str
         data["期间"] = pd.to_datetime(data["期间"]) # 将str转为日期格式
-        data["工时"] = data["工时"].apply(float) # 工时转为float
-        data.set_index('期间', drop=True, inplace=True) #重置索引列，并将原索引列删除
-        data.drop(['序号', '任务来源', '任务性质', '测试负责人', '研发负责人', '本周工作目标','实际完成时间',
+        data1 = data[(data["期间"] > self.start) & (data["期间"] < self.end)].copy()
+        self.logger.debug(data1.columns)
+        data1["工时"] = data1["工时"].apply(float) # 工时转为float
+        data1.set_index('期间', drop=True, inplace=True) #重置索引列，并将原索引列删除
+        data1.drop(['序号', '任务来源', '任务性质', '测试负责人', '研发负责人', '本周工作目标','实际完成时间',
                    '实际完成情况', '亮点', '问题点', '修改内容简述', '备注'],axis=1,inplace=True)
         # data1 = data["2019-08":"2019-10"]
-        data1 = data[self.start:self.end]  # 取出从start到end期间的数据
+        # data1 = data[self.start:self.end]  # 取出从start到end期间的数据
         agg1 = {"工时":["sum"]}
         result = data1.groupby(["事业部", "工作项目/任务","测试人员"]).agg(agg1)
         result2 = data1.groupby(["事业部", "工作项目/任务"]).agg(agg1)
@@ -246,7 +255,6 @@ class DataCount(object):
         result["事业部工时合计"] = result3["工时"]  # 后面加入事业部工时合计列
         self.logger.debug(result.index)
         self.logger.debug(result3.index)
-
         result.reset_index(level=[0], inplace=True)  # 取消原来索引
         result["期间"] = "{}--{}".format(self.start,self.end)
         result.columns = result.columns.droplevel(1)  #删除第二级列标题
@@ -259,12 +267,24 @@ class DataCount(object):
 
 
     def main(self):
-        # 对周报中数据清洗、格式统一
+        # 删除temp文件夹
+        if os.path.exists(os.path.join(DIR_PATH, "temp")):
+            shutil.rmtree(os.path.join(DIR_PATH, "temp"))
+        # 新建temp文件夹
         if not os.path.exists(os.path.join(DIR_PATH, "temp")):
             os.mkdir(os.path.join(DIR_PATH, "temp"))
+        # 对周报中数据清洗、格式统一
         self._clear_data()
         # # 合并两个部门的周报为一个excel
-        datas = self._merge_data([self.temp_xt,self.temp_ck])
+        temp_excels = list()
+        if self.xt_flag == 1:
+            temp_excels.append(self.temp_xt)
+        if self.ck_flag == 1:
+            temp_excels.append(self.temp_ck)
+        if self.ck_flag != 1 and self.xt_flag != 1:
+            print("配置文件中“depart配置”输入错误")
+            os._exit(0)  #终止执行后面代码
+        datas = self._merge_data(temp_excels)
         # 查询数据出报表
         self._data_analysis(datas)
         self.logger.warning("报表出具成功，位于{}!!!".format(self.report))
