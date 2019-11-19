@@ -193,7 +193,7 @@ class DataCount(object):
             return value_list
 
 
-    def _merge_data(self,temps):
+    def _merge_data(self,temp_excels):
         '''
         将清洗后的数据合并到一张表，并加载到dataFrame中
         :param temps: 清洗后的数据存放的excel表名（list）
@@ -201,7 +201,7 @@ class DataCount(object):
         '''
 
         datas = pd.DataFrame()
-        for temp in temps:
+        for temp in temp_excels:
             # 从清洗后的temp文件里获取sheet_name
             wb_data = xlrd.open_workbook(temp)
             sheets_list = wb_data.sheet_names()
@@ -225,17 +225,15 @@ class DataCount(object):
 
 
     # 对DataFrame中的数据进行查询、统计
-    def _data_analysis(self,data,start,end):
-        # data["2019-08":"2019-10"]
+    def _data_analysis(self,data):
         data["期间"] = data["期间"].apply(str) #将期间列由int转为str
         data["期间"] = pd.to_datetime(data["期间"]) # 将str转为日期格式
         data["工时"] = data["工时"].apply(float) # 工时转为float
         data.set_index('期间', drop=True, inplace=True) #重置索引列，并将原索引列删除
-        self.logger.debug(type(data))
-        self.logger.debug(data)
         data.drop(['序号', '任务来源', '任务性质', '测试负责人', '研发负责人', '本周工作目标','实际完成时间',
                    '实际完成情况', '亮点', '问题点', '修改内容简述', '备注'],axis=1,inplace=True)
-        data1 = data[start:end]  # 取出从start到end期间的数据
+        # data1 = data["2019-08":"2019-10"]
+        data1 = data[self.start:self.end]  # 取出从start到end期间的数据
         agg1 = {"工时":["sum"]}
         result = data1.groupby(["事业部", "工作项目/任务","测试人员"]).agg(agg1)
         result2 = data1.groupby(["事业部", "工作项目/任务"]).agg(agg1)
@@ -250,7 +248,7 @@ class DataCount(object):
         self.logger.debug(result3.index)
 
         result.reset_index(level=[0], inplace=True)  # 取消原来索引
-        result["期间"] = "{}--{}".format(start,end)
+        result["期间"] = "{}--{}".format(self.start,self.end)
         result.columns = result.columns.droplevel(1)  #删除第二级列标题
         self.logger.debug(result.columns)
         result.set_index(["期间","事业部","事业部工时合计", "工作项目/任务","项目工时合计","测试人员"], drop=True, inplace=True)
@@ -267,9 +265,9 @@ class DataCount(object):
         self._clear_data()
         # # 合并两个部门的周报为一个excel
         datas = self._merge_data([self.temp_xt,self.temp_ck])
-        # # 查询数据出报表
-        self._data_analysis(datas,self.start,self.end)
-        self.logger.warning("报表出具成功{}!!!".format(self.report))
+        # 查询数据出报表
+        self._data_analysis(datas)
+        self.logger.warning("报表出具成功，位于{}!!!".format(self.report))
 
 
 if __name__ =="__main__":
