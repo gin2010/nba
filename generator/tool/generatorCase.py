@@ -30,8 +30,9 @@ class Generator(object):
         log_level = int(config.get("logging", "level"))
         log = Log(log_file,log_level)
         self.logger = log.control_and_file()
+        self.logger.warning(config_name)
         '''
-        单独日志配置于20191012替换，由于只能打印到控制台，无法输出到文件中
+        # 单独日志配置于20191012替换，由于只能打印到控制台，无法输出到文件中
         logging.basicConfig(level=log_level, format='%(asctime)s - %(levelname)s - %(message)s')
         self.logger = logging.getLogger(__name__)
         '''
@@ -148,10 +149,10 @@ class Generator(object):
             1修改发票号码、发票代码；
             2将内层报文参数inner_param的值修改为inner_param_value并返回
         :param temp:内层报文
-        :param step:测试用例step
-        :param fphm:发票号码
-        :param inner_key:内层报文中需要更新的key
-        :param inner_value:内层报文中需要更新的key对应的value
+        :param step:测试用例step（从excel模板common中读取的step）
+        :param fphm:发票号码（从excel模板common中读取的起始发票号码）
+        :param inner_key:内层报文中需要更新的key（从excel模板case中读取的每一行request_param的值），相当于每次修改的字段
+        :param inner_value:内层报文中需要更新的key对应的value（GetString返回的字段值，一次传入一个）
         :return temp: 转换为json格式的内层报文
         """
         # 修改模板中发票号码
