@@ -6,6 +6,8 @@
 
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+
 
 # 创建数组方式
 data = np.arange(1,5).reshape(2,2)
@@ -85,7 +87,7 @@ s1.value_counts()
 s1.mode()
 
 # 数据透视表values代表值、index代表索引、columns代表列名（按列里面值进行分类）
-datas.pivot(values=['C'],index=['A','B'],columns=['D'])
+datas.pivot(values=['C'],index=['A','B'],columns=['D'],aggfunc="mean")
 
 # 时间序列--按秒生成时间序列
 date = pd.date_range("2019-11-01",periods=600,freq="s")
@@ -110,3 +112,13 @@ data_stack = datas.stack()
 # 行索引转为列索引（每次从最末级索引开始转换）
 data_unstack = data_stack.unstack()
 
+# category的使用，可以更改显示的内容，但是排序的时候仍以a/b/d进行
+data = pd.DataFrame({"id":[1,2,3,4,5,6],"raw_grade":['a','b','b','a','a','d']})
+data['grade']=data.raw_grade.astype("category")
+data.grade.cat.categories=['excellent','good','bad']
+data.sort_values(by='grade')
+
+# 显示折线图
+s = pd.Series(np.random.randint(10,20,100),index=pd.date_range("20100101",periods=100))
+s.plot()
+plt.show() # 不加show显示不出来
