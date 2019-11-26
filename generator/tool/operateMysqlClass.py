@@ -66,7 +66,7 @@ class OperateMysql:
         self.logger.info(sql)
         self.cursor.execute(sql)
         self.db.commit()
-        self.logger.warning(f"step:{data['step']}&&{data['request_name']}插入成功")
+        self.logger.warning(f"case_id:{data['case_id']}&step:{data['step']}&&{data['request_name']}插入成功")
 
 
 if __name__ =="__main__":
