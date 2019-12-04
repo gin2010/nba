@@ -2,7 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/chardet" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/chardet" vcs="" />
     <mapping directory="$PROJECT_DIR$/xpinyin" vcs="Git" />
   </component>
 </project>

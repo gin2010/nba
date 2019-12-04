@@ -124,8 +124,14 @@ class Generator(object):
         for r in range(1, max_row):
             case = dict()
             case["case_name"] = ws_case.cell(r, 1).value
-            case['key'] = ws_case.cell(r, 2).value.split(sep="\n")
-            case['value'] = ws_case.cell(r, 3).value.split(sep="\n")
+            if isinstance(ws_case.cell(r, 2).value,str):
+                case['key'] = ws_case.cell(r, 2).value.split(sep="\n")
+            else:
+                case['key'] = ws_case.cell(r, 2).value
+            if isinstance(ws_case.cell(r, 3).value,str):
+                case['value'] = ws_case.cell(r, 3).value.split(sep="\n")
+            else:
+                case['value'] = ws_case.cell(r, 3).value
             cases.append(case)
         # 读取common sheet
         ws_common = wb.sheet_by_name("common")
@@ -233,7 +239,7 @@ class Generator(object):
                 common_datas["request_name"] = str(d["resquest_param"]) + "--" + l[0]
                 common_datas["request_sql_param"] = self.update_temp_single(self.temp,step,common_datas["fphm_start"],d["resquest_param"], l[1])
                 opsql.insert_sql(common_datas)
-            step += 40
+            step += 10
         opsql.close()
 
 

@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/test_aisino/myClassDemo.py" line="9" />
+    <bookmark url="file://$PROJECT_DIR$/generator/tool/randomStringClass.py" line="483" />
+    <bookmark url="file://$PROJECT_DIR$/2019-challenge/dataCount.py" line="236" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93e732b9-02c6-42e3-b8d2-34bf4e0524aa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/check_proxy.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_proxy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/excel_relative/merge_xls.py" beforeDir="false" afterPath="$PROJECT_DIR$/excel_relative/merge_xls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpcz/generateLoadCase.py" beforeDir="false" afterPath="$PROJECT_DIR$/fpcz/generateLoadCase.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpcz/xml/xmlParse.py" beforeDir="false" afterPath="$PROJECT_DIR$/fpcz/xml/xmlParse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2019-challenge/data.config" beforeDir="false" afterPath="$PROJECT_DIR$/2019-challenge/data.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytes_pdf/pdf_bytes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bytes_pdf/pdf_bytes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fpcz/data/template_single.temp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/config/generator.ini" beforeDir="false" afterPath="$PROJECT_DIR$/generator/config/generator.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/config/template_single_khxxcx.temp" beforeDir="false" afterPath="$PROJECT_DIR$/generator/config/template_single_khxxcx.temp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/config/template_single_khxxgx.temp" beforeDir="false" afterPath="$PROJECT_DIR$/generator/config/template_single_khxxgx.temp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/config/template_single_khxxsc_pd.temp" beforeDir="false" afterPath="$PROJECT_DIR$/generator/config/template_single_khxxsc_pd.temp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/config/template_single_khxxxz.temp" beforeDir="false" afterPath="$PROJECT_DIR$/generator/config/template_single_khxxxz.temp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/config/template_single_spxxcx.temp" beforeDir="false" afterPath="$PROJECT_DIR$/generator/config/template_single_spxxcx.temp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/data/case_mult_tbqyxx.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/data/case_single_khxxcx.xls" beforeDir="false" afterPath="$PROJECT_DIR$/generator/data/case_single_khxxcx.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/data/case_single_khxxgx.xls" beforeDir="false" afterPath="$PROJECT_DIR$/generator/data/case_single_khxxgx.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/data/case_single_khxxsc_pd.xls" beforeDir="false" afterPath="$PROJECT_DIR$/generator/data/case_single_khxxsc_pd.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/data/case_single_khxxxz.xls" beforeDir="false" afterPath="$PROJECT_DIR$/generator/data/case_single_khxxxz.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/data/case_single_spxxcx.xls" beforeDir="false" afterPath="$PROJECT_DIR$/generator/data/case_single_spxxcx.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/data/case_single_spxxsc.xls" beforeDir="false" afterPath="$PROJECT_DIR$/generator/data/case_single_spxxsc.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generator/generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/log/generator.log" beforeDir="false" afterPath="$PROJECT_DIR$/generator/log/generator.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/tool/generatorCase.py" beforeDir="false" afterPath="$PROJECT_DIR$/generator/tool/generatorCase.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator/tool/randomStringClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/generator/tool/randomStringClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/log.py" beforeDir="false" afterPath="$PROJECT_DIR$/log/log.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas_test/demoPandas.py" beforeDir="false" afterPath="$PROJECT_DIR$/pandas_test/demoPandas.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,6 +39,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/work$pdfbyte.coverage" NAME="pdfbyte Coverage Results" MODIFIED="1571382008268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bytes_pdf" />
     <SUITE FILE_PATH="coverage/water$xmlParse.coverage" NAME="xmlParse Coverage Results" MODIFIED="1569487220524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fpcz/xml" />
     <SUITE FILE_PATH="coverage/water$generateLoadCase.coverage" NAME="generateLoadCase Coverage Results" MODIFIED="1568978028125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fpcz" />
     <SUITE FILE_PATH="coverage/water$search_dict.coverage" NAME="search_dict Coverage Results" MODIFIED="1568855930259" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fpcz/tool" />
@@ -81,40 +104,77 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1268338021">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="21" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.2" value="2" />
+          <entry key="project.open.time.3" value="17" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="23" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="README" value="1" />
+          <entry key="config" value="3" />
+          <entry key="ini" value="22" />
+          <entry key="log" value="10" />
+          <entry key="py" value="129" />
+          <entry key="readme" value="1" />
+          <entry key="temp" value="25" />
+          <entry key="txt" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Ini" value="22" />
+          <entry key="PLAIN_TEXT" value="45" />
+          <entry key="Python" value="129" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="README" value="99" />
+          <entry key="config" value="96" />
+          <entry key="dummy" value="19" />
+          <entry key="ini" value="416" />
+          <entry key="log" value="3" />
+          <entry key="py" value="21156" />
+          <entry key="readme" value="14" />
+          <entry key="temp" value="24" />
+          <entry key="txt" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Ini" value="416" />
+          <entry key="PLAIN_TEXT" value="256" />
+          <entry key="Python" value="21156" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/fpcz/generateFromExcel.py">
+        <entry file="file://$PROJECT_DIR$/generator/generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+            <state relative-caret-position="507">
+              <caret line="204" column="41" lean-forward="true" selection-start-line="204" selection-start-column="41" selection-end-line="204" selection-end-column="41" />
               <folding>
-                <element signature="e#107#131#0" expanded="true" />
-                <element signature="e#2118#8736#0" />
+                <element signature="e#704#744#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fpcz/data/template_single.temp">
+        <entry file="file://$PROJECT_DIR$/generator/config/generator.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="3196" lean-forward="true" selection-start-column="3196" selection-end-column="3196" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fpcz/generateLoadCase.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="47" />
-              <folding>
-                <element signature="e#732#1711#0" />
-                <element signature="e#1795#8413#0" />
-              </folding>
+            <state relative-caret-position="462">
+              <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -146,6 +206,19 @@
       <find>s_bhsje</find>
       <find>BZ</find>
       <find>GMF_NSRSBH</find>
+      <find>case_list</find>
+      <find>strings</find>
+      <find>logger</find>
+      <find>null</find>
+      <find>temp</find>
+      <find>中</find>
+      <find>sj</find>
+      <find>sheet_by_</find>
+      <find>666</find>
+      <find>formatt</find>
+      <find />
+      <find> </find>
+      <find>temp_sort</find>
     </findStrings>
     <replaceStrings>
       <replace>位</replace>
@@ -157,17 +230,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/fpcz/data/template_single" />
-        <option value="$PROJECT_DIR$/fpcz/tool/randomCount.py" />
-        <option value="$PROJECT_DIR$/fpcz/tool/randomString.py" />
-        <option value="$PROJECT_DIR$/fpcz/tool/search_dict.py" />
-        <option value="$PROJECT_DIR$/fpcz/tool/templateToJson.py" />
-        <option value="$PROJECT_DIR$/fpcz/generateCase.py" />
-        <option value="$PROJECT_DIR$/excel_relative/merge_xls.py" />
-        <option value="$PROJECT_DIR$/fpcz/tool/operateMysql.py" />
-        <option value="$PROJECT_DIR$/chardet/test.py" />
-        <option value="$PROJECT_DIR$/test_aisino/myClassDemo.py" />
-        <option value="$PROJECT_DIR$/check_proxy.py" />
         <option value="$PROJECT_DIR$/fpcz/README" />
         <option value="$PROJECT_DIR$/fpcz/generateLoadCaseDesign" />
         <option value="$PROJECT_DIR$/fpcz/generateSingleCase.py" />
@@ -176,11 +238,49 @@
         <option value="$PROJECT_DIR$/fpcz/generateLoadCase.py" />
         <option value="$PROJECT_DIR$/generator/xml/generator.conf" />
         <option value="$PROJECT_DIR$/generator/generator.ini" />
-        <option value="$PROJECT_DIR$/generator/generatorCase.py" />
         <option value="$PROJECT_DIR$/black_box_test/blackBoxTest.py" />
         <option value="$PROJECT_DIR$/generator/generateFromExcel.py" />
         <option value="$PROJECT_DIR$/fpcz/tool/operateMysqlClass.py" />
         <option value="$PROJECT_DIR$/fpcz/generateFromExcel.py" />
+        <option value="$PROJECT_DIR$/generator/tool/randomCount.py" />
+        <option value="$PROJECT_DIR$/generator/tool/randomString.py" />
+        <option value="$PROJECT_DIR$/generator/generateSingleCase.py" />
+        <option value="$PROJECT_DIR$/generator/config/template_single_tjcx.temp" />
+        <option value="$PROJECT_DIR$/demo.py" />
+        <option value="$PROJECT_DIR$/log/log.py" />
+        <option value="$PROJECT_DIR$/log/new.log" />
+        <option value="$PROJECT_DIR$/generator/tool/logSet.py" />
+        <option value="$PROJECT_DIR$/log/logSetClass.py" />
+        <option value="$PROJECT_DIR$/log/logset.log" />
+        <option value="$PROJECT_DIR$/generator/tool/logSetClass.py" />
+        <option value="$PROJECT_DIR$/generator/log/generator.log" />
+        <option value="$PROJECT_DIR$/demo/demo1.py" />
+        <option value="$PROJECT_DIR$/generator/README" />
+        <option value="$PROJECT_DIR$/generator/generatorCase.py" />
+        <option value="$PROJECT_DIR$/demo/pdfbyte.py" />
+        <option value="$PROJECT_DIR$/bytes_pdf/pdfbyte.py" />
+        <option value="$PROJECT_DIR$/demo/del_dict.py" />
+        <option value="$PROJECT_DIR$/generator/tool/search_dict.py" />
+        <option value="$PROJECT_DIR$/generator/config/template_single_fs.temp" />
+        <option value="$PROJECT_DIR$/2019-challenge/result.py" />
+        <option value="$PROJECT_DIR$/bytes_pdf/pdf_bytes.txt" />
+        <option value="$PROJECT_DIR$/2019-challenge/dataCount_bak.py" />
+        <option value="$PROJECT_DIR$/2019-challenge/tool/mergeData.py" />
+        <option value="$PROJECT_DIR$/2019-challenge/tool/__init__.py" />
+        <option value="$PROJECT_DIR$/2019-challenge/dataCount.py" />
+        <option value="$PROJECT_DIR$/2019-challenge/data.config" />
+        <option value="$PROJECT_DIR$/generator/config/generator_51fp.ini" />
+        <option value="$PROJECT_DIR$/generator/data/readme" />
+        <option value="$PROJECT_DIR$/pandas_test/demoPandas.py" />
+        <option value="$PROJECT_DIR$/generator/config/template_single_khxxcx.temp" />
+        <option value="$PROJECT_DIR$/generator/config/template_single_spxxcx.temp" />
+        <option value="$PROJECT_DIR$/generator/tool/operateMysqlClass.py" />
+        <option value="$PROJECT_DIR$/generator/config/template_single_khxxsc.temp" />
+        <option value="$PROJECT_DIR$/generator/tool/randomStringClass.py" />
+        <option value="$PROJECT_DIR$/generator/tool/generatorCase.py" />
+        <option value="$PROJECT_DIR$/generator/config/generator.ini" />
+        <option value="$PROJECT_DIR$/demo/dict_check.py" />
+        <option value="$PROJECT_DIR$/generator/generator.py" />
       </list>
     </option>
   </component>
@@ -218,21 +318,38 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="water" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="work" type="b2602c69:ProjectViewProjectNode" />
+              <item name="work" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="work" type="b2602c69:ProjectViewProjectNode" />
+              <item name="work" type="462c0819:PsiDirectoryNode" />
+              <item name="generator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="work" type="b2602c69:ProjectViewProjectNode" />
+              <item name="work" type="462c0819:PsiDirectoryNode" />
+              <item name="generator" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="work" type="b2602c69:ProjectViewProjectNode" />
+              <item name="work" type="462c0819:PsiDirectoryNode" />
+              <item name="pandas_test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="中&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -240,6 +357,13 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\gin\Git\work\generator\data" />
+      <recent name="E:\gin\Git\work\generator\config" />
+      <recent name="E:\gin\Git\work\2019-challenge" />
+      <recent name="E:\gin\Git\work\generator\tool" />
+      <recent name="E:\gin\Git\work\toos" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\gin\Git\water\fpcz" />
     </key>
@@ -256,7 +380,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.xmlParse">
+  <component name="RunManager" selected="Python.pdfbyte">
     <configuration name="generateLoadCase" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="water" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -271,6 +395,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fpcz/generateLoadCase.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pdfbyte" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="water" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bytes_pdf" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bytes_pdf/pdfbyte.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -327,9 +473,11 @@
       <item itemvalue="Python.search_dict" />
       <item itemvalue="Python.generateLoadCase" />
       <item itemvalue="Python.xmlParse" />
+      <item itemvalue="Python.pdfbyte" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pdfbyte" />
         <item itemvalue="Python.xmlParse" />
         <item itemvalue="Python.generateLoadCase" />
         <item itemvalue="Python.search_dict" />
@@ -351,12 +499,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="33" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13873994" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16286863" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32885906" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32765958" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32907802" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -394,314 +543,289 @@
           <line>174</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/fpcz/generateLoadCase.py</url>
-          <line>49</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/fpcz/tool/randomString.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="13" selection-start-line="13" selection-end-line="15" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python37-32/Lib/json/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="168" column="35" selection-start-line="168" selection-start-column="19" selection-end-line="168" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/pythonEnv/gexmlEnv/Lib/os.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-          <folding>
-            <element signature="e#1114#1124#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/excel_relative/merge_xls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fpcz/tool/operateMysql.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/pythonEnv/gexmlEnv/Lib/random.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-662">
-          <caret line="188" column="38" selection-start-line="188" selection-start-column="28" selection-end-line="188" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fpcz/tool/randomCount.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chardet/chardet/gb2312freq.py" />
-    <entry file="file://$PROJECT_DIR$/chardet/chardet/chardistribution.py" />
-    <entry file="file://$PROJECT_DIR$/chardet/chardet/gb2312prober.py" />
-    <entry file="file://$PROJECT_DIR$/chardet/tests/GB2312/2.blog.westca.com.xml" />
-    <entry file="file://$PROJECT_DIR$/chardet/test.py" />
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1994184117/math.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="240" column="4" selection-start-line="240" selection-start-column="4" selection-end-line="240" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1994184117/_csv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-756">
-          <caret line="75" column="20" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python37-32/Lib/csv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6056">
-          <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python37-32/Lib/zipfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28996">
-          <caret line="1327" column="18" selection-start-line="1327" selection-start-column="18" selection-end-line="1327" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/pythonEnv/gexmlEnv/Lib/site-packages/xlrd-1.2.0.dist-info/INSTALLER">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://D:/pythonEnv/gexmlEnv/Lib/site-packages/xlrd-1.2.0.dist-info/LICENSE">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-289">
-          <caret line="38" column="59" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/pythonEnv/gexmlEnv/Lib/site-packages/xlrd-1.2.0.dist-info/METADATA">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="27" column="62" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/pythonEnv/gexmlEnv/Lib/site-packages/xlrd-1.2.0.dist-info/RECORD">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/pythonEnv/gexmlEnv/Lib/site-packages/xlrd-1.2.0.dist-info/top_level.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://D:/pythonEnv/gexmlEnv/Lib/site-packages/xlrd-1.2.0.dist-info/WHEEL">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/math.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="11" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/pythonEnv/gexmlEnv/Lib/site-packages/xlrd/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#152#161#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/typing.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6534">
-          <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/queue.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="26" column="17" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python37-32/Lib/queue.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="33" column="30" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/check_proxy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_aisino/myClassDemo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fpcz/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="29" selection-start-column="29" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fpcz/tool/readExcelClass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-44" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fpcz/XML2Dict-0.2.2/decoder.py" />
-    <entry file="file://$PROJECT_DIR$/fpcz/XML2Dict-0.2.2/encoder.py" />
-    <entry file="file://$PROJECT_DIR$/fpcz/XML2Dict-0.2.2/setup.py" />
-    <entry file="file://$PROJECT_DIR$/fpcz/xml/readXML.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="10" selection-start-line="10" selection-end-line="12" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fpcz/xml/hztestcase.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-22">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fpcz/xml/xmlParse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="13" column="81" selection-start-line="13" selection-start-column="68" selection-end-line="13" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator/xml/generator.conf" />
-    <entry file="file://$PROJECT_DIR$/generator/generator.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator/tool/operateMysqlClass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator/generateLoadCase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="10" selection-start-line="10" selection-end-line="12" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator/generatorCase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="65" column="11" lean-forward="true" selection-start-line="65" selection-start-column="11" selection-end-line="65" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fpcz/generateLoadCaseDesign">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        <state relative-caret-position="110">
+          <caret line="111" selection-start-line="111" selection-end-line="120" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1994184117/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="148" column="33" selection-start-line="148" selection-start-column="33" selection-end-line="148" selection-end-column="33" />
+        <state relative-caret-position="255">
+          <caret line="2796" column="17" lean-forward="true" selection-start-line="2796" selection-start-column="17" selection-end-line="2796" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/black_box_test/blackBoxTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/generateSingleCase.py" />
+    <entry file="file://$PROJECT_DIR$/generator/config/template_single.temp" />
     <entry file="file://$PROJECT_DIR$/fpcz/generateSingleCase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="496" column="46" selection-start-line="496" selection-start-column="11" selection-end-line="496" selection-end-column="46" />
+        <state relative-caret-position="330">
+          <caret line="21" selection-start-line="21" selection-end-line="23" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generate_xml/generateCase1.4.py">
+    <entry file="file://$PROJECT_DIR$/new.log" />
+    <entry file="file://$PROJECT_DIR$/demo.py" />
+    <entry file="file://$PROJECT_DIR$/log/new.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log/log.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-374">
-          <caret line="180" column="14" selection-start-line="180" selection-start-column="4" selection-end-line="180" selection-end-column="14" />
+        <state relative-caret-position="458">
+          <caret line="21" column="12" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fpcz/data/template_single.temp">
+    <entry file="file://$PROJECT_DIR$/log/logset.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="3196" lean-forward="true" selection-start-column="3196" selection-end-column="3196" />
+        <state relative-caret-position="132">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log/logSetClass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/tool/logSetClass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/log/generator.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/config/nanti.config">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fpcz/tool/search_dict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="103" selection-start-line="103" selection-end-line="114" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/toos/operateMysql.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/README">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="50" column="30" lean-forward="true" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/generatorCase.py" />
+    <entry file="file://$PROJECT_DIR$/generator/config/template_single_tjcx.temp" />
+    <entry file="file://$PROJECT_DIR$/demo/pdf_bytes.txt" />
+    <entry file="file://$PROJECT_DIR$/demo/pdfbyte.py" />
+    <entry file="file://$PROJECT_DIR$/demo/demo1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="20" column="12" lean-forward="true" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/del_dict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/tool/search_dict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="108" column="17" lean-forward="true" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fpcz/generateLoadCase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="47" />
+        <state relative-caret-position="399">
+          <caret line="240" column="30" selection-start-line="240" selection-start-column="30" selection-end-line="240" selection-end-column="30" />
           <folding>
+            <element signature="e#119#148#0" expanded="true" />
             <element signature="e#732#1711#0" />
             <element signature="e#1795#8413#0" />
+            <element signature="e#8460#9193#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fpcz/tool/operateMysqlClass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fpcz/generateFromExcel.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="597">
+          <caret line="186" column="58" lean-forward="true" selection-start-line="186" selection-start-column="58" selection-end-line="186" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/config/template_single_fs.temp" />
+    <entry file="file://$PROJECT_DIR$/2019-challenge/tool/mergeData.py" />
+    <entry file="file://$PROJECT_DIR$/2019-challenge/tool/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/bytes_pdf/pdfbyte.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="28" column="25" lean-forward="true" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bytes_pdf/pdf_bytes.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="43960" selection-start-column="43960" selection-end-column="43960" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2019-challenge/dataCount_bak.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2019-challenge/data.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/config/generator_51fp.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="37" lean-forward="true" selection-start-column="2" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/data/readme">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
-          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xml_test/generateCase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1034">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generate_xml/generateCase1.4.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-462">
+          <caret line="17" selection-start-line="17" selection-end-line="18" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pandas_test/demoPandas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/config/fanti.config">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/config/template_single_spxxcx.temp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/config/template_single_khxxcx.temp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="31" selection-start-column="31" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/tool/operateMysqlClass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="68" column="54" selection-start-line="68" selection-start-column="54" selection-end-line="68" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/config/template_single_khxxsc.temp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/config/template_single_khxxxz_pd.temp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/config/template_single_khxxgx.temp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/tool/randomStringClass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="479" column="42" selection-start-line="479" selection-start-column="42" selection-end-line="479" selection-end-column="42" />
           <folding>
-            <element signature="e#107#131#0" expanded="true" />
-            <element signature="e#2118#8736#0" />
+            <element signature="e#6073#10541#0" />
+            <element signature="e#10585#15272#0" />
+            <element signature="e#15323#18916#0" />
+            <element signature="e#18959#21610#0" />
+            <element signature="e#21664#24458#0" />
+            <element signature="e#24621#25348#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/tool/generatorCase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-882">
+          <caret line="120" column="31" selection-start-line="120" selection-start-column="26" selection-end-line="120" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/config/generator.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2019-challenge/dataCount.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="36" column="47" lean-forward="true" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
+          <folding>
+            <element signature="e#109#136#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/dict_check.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="204" column="41" lean-forward="true" selection-start-line="204" selection-start-column="41" selection-end-line="204" selection-end-column="41" />
+          <folding>
+            <element signature="e#704#744#0" expanded="true" />
           </folding>
         </state>
       </provider>

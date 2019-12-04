@@ -187,9 +187,8 @@ class GetString:
         # 3生成length位的数字（两边有空格）
         results.append([f"生成{length}位的数字（两边有空格）T", "   " + self._random_string_multiple(['SZ'], length) + "  "])
         # 4生成length位的数字（中间有空格）
-        result = self._random_string_multiple(['SZ'], length)
-        results.append([f"生成{length}位的数字（中间有空格）F",
-                        result[:math.floor(length / 2)] + "   " + result[math.floor(length / 2):length]])
+        # result = self._random_string_multiple(['SZ'], length)
+        # results.append([f"生成{length}位的数字（中间有空格）F",result[:math.floor(length / 2)] + "   " + result[math.floor(length / 2):length]])
         # 5生成length位的大写字母
         results.append([f"生成{length}位的大写字母T", self._random_string_multiple(['ZMD'], length)])
         # 6生成length+1位的大写字母
@@ -214,7 +213,7 @@ class GetString:
         if length >= 3:
             results.append([f"生成{length}位大小写字母、数字T", self._random_string_multiple(['ZMD', 'ZMX', 'SZ'], length)])
         # 14生成length位全角数字
-        results.append([f"生成{length}位全角数字F", self._random_string_multiple(['QJSZ'], length)])
+        # results.append([f"生成{length}位全角数字F", self._random_string_multiple(['QJSZ'], length)])
         # 15生成length位大小写字母
         if length >= 2:
             results.append([f"生成{length}位大小写字母T", self._random_string_multiple(['ZMD', 'ZMX'], length)])
@@ -228,16 +227,16 @@ class GetString:
             results.append([f"生成{math.floor(length/2)+1}位的汉字F", self._random_string_multiple(['HZ'], math.floor(length/2) + 1)])
         else:
             results.append([f"生成{length+1}位的汉字F", self._random_string_multiple(['HZ'], length + 1)])
-        # 18生成length位的繁体字
-        if length >= 2:
-            results.append([f"生成{math.floor(length/2)}位的繁体字T", self._random_string_multiple(['FT'], math.floor(length/2))])
-        else:
-            results.append([f"生成{length}位的繁体字T", self._random_string_multiple(['FT'], length)])
-        # 19生成length位的难体字
-        if length >= 2:
-            results.append([f"生成{math.floor(length/2)}位的难体字T", self._random_string_multiple(['NT'], math.floor(length/2))])
-        else:
-            results.append([f"生成{length}位的难体字T", self._random_string_multiple(['NT'], length)])
+        # # 18生成length位的繁体字
+        # if length >= 2:
+        #     results.append([f"生成{math.floor(length/2)}位的繁体字T", self._random_string_multiple(['FT'], math.floor(length/2))])
+        # else:
+        #     results.append([f"生成{length}位的繁体字T", self._random_string_multiple(['FT'], length)])
+        # # 19生成length位的难体字
+        # if length >= 2:
+        #     results.append([f"生成{math.floor(length/2)}位的难体字T", self._random_string_multiple(['NT'], math.floor(length/2))])
+        # else:
+        #     results.append([f"生成{length}位的难体字T", self._random_string_multiple(['NT'], length)])
         # 20生成length位的特殊符号
         results.append([f"生成{length}位的特殊符号T", self._random_string_multiple(['FH'], length)])
         # 21生成空值
@@ -273,9 +272,8 @@ class GetString:
         # 3生成length位的数字（两边有空格）
         results.append([f"生成{length}位的数字（两边有空格）F", "   " + self._random_string_multiple(['SZ'], length) + "  "])
         # 4生成length位的数字（中间有空格）
-        result = self._random_string_multiple(['SZ'], length)
-        results.append([f"生成{length}位的数字（中间有空格）F",
-                        result[:math.floor(length / 2)] + "   " + result[math.floor(length / 2):length]])
+        # result = self._random_string_multiple(['SZ'], length)
+        # results.append([f"生成{length}位的数字（中间有空格）F",result[:math.floor(length / 2)] + "   " + result[math.floor(length / 2):length]])
         # 5生成length位的大写字母
         results.append([f"生成{length}位的大写字母T", self._random_string_multiple(['ZMD'], length)])
         # 6生成length+1位的大写字母
@@ -300,7 +298,7 @@ class GetString:
         if length >= 3:
             results.append([f"生成{length}位大小写字母、数字F", self._random_string_multiple(['ZMD', 'ZMX', 'SZ'], length)])
         # 14生成length位全角数字
-        results.append([f"生成{length}位全角数字F", self._random_string_multiple(['QJSZ'], length)])
+        # results.append([f"生成{length}位全角数字F", self._random_string_multiple(['QJSZ'], length)])
         # 15生成length位大小写字母
         if length >= 2:
             results.append([f"生成{length}位大小写字母F", self._random_string_multiple(['ZMD', 'ZMX'], length)])
@@ -314,16 +312,16 @@ class GetString:
             results.append([f"生成{math.floor(length/2)+1}位的汉字F", self._random_string_multiple(['HZ'], math.floor(length/2) + 1)])
         else:
             results.append([f"生成{length+1}位的汉字F", self._random_string_multiple(['HZ'], length + 1)])
-        # 18生成length位的繁体字
-        if length >= 2:
-            results.append([f"生成{math.floor(length/2)}位的繁体字F", self._random_string_multiple(['FT'], math.floor(length/2))])
-        else:
-            results.append([f"生成{length}位的繁体字F", self._random_string_multiple(['FT'], length)])
-        # 19生成length位的难体字
-        if length >= 2:
-            results.append([f"生成{math.floor(length/2)}位的难体字F", self._random_string_multiple(['NT'], math.floor(length/2))])
-        else:
-            results.append([f"生成{length}位的难体字F", self._random_string_multiple(['NT'], length)])
+        # # 18生成length位的繁体字
+        # if length >= 2:
+        #     results.append([f"生成{math.floor(length/2)}位的繁体字F", self._random_string_multiple(['FT'], math.floor(length/2))])
+        # else:
+        #     results.append([f"生成{length}位的繁体字F", self._random_string_multiple(['FT'], length)])
+        # # 19生成length位的难体字
+        # if length >= 2:
+        #     results.append([f"生成{math.floor(length/2)}位的难体字F", self._random_string_multiple(['NT'], math.floor(length/2))])
+        # else:
+        #     results.append([f"生成{length}位的难体字F", self._random_string_multiple(['NT'], length)])
         # 20生成length位的特殊符号
         results.append([f"生成{length}位的特殊符号F", self._random_string_multiple(['FH'], length)])
         # 21生成空值
@@ -402,16 +400,16 @@ class GetString:
             results.append([f"日期为{math.floor(length/2)}位的汉字F", self._random_string_multiple(['HZ'], math.floor(length/2))])
         else:
             results.append([f"日期为{length}位的汉字F", self._random_string_multiple(['HZ'], length)])
-        # 19 日期为length位的繁体字
-        if length >= 2:
-            results.append([f"日期为{math.floor(length/2)}位的繁体字F", self._random_string_multiple(['FT'], math.floor(length/2))])
-        else:
-            results.append([f"日期为{length}位的繁体字F", self._random_string_multiple(['FT'], length)])
-        # 20 日期为length位的难体字
-        if length >= 2:
-            results.append([f"日期为{math.floor(length/2)}位的难体字F", self._random_string_multiple(['NT'], math.floor(length/2))])
-        else:
-            results.append([f"日期为{length}位的难体字F", self._random_string_multiple(['NT'], length)])
+        # # 19 日期为length位的繁体字
+        # if length >= 2:
+        #     results.append([f"日期为{math.floor(length/2)}位的繁体字F", self._random_string_multiple(['FT'], math.floor(length/2))])
+        # else:
+        #     results.append([f"日期为{length}位的繁体字F", self._random_string_multiple(['FT'], length)])
+        # # 20 日期为length位的难体字
+        # if length >= 2:
+        #     results.append([f"日期为{math.floor(length/2)}位的难体字F", self._random_string_multiple(['NT'], math.floor(length/2))])
+        # else:
+        #     results.append([f"日期为{length}位的难体字F", self._random_string_multiple(['NT'], length)])
         # 21 日期为length位的特殊符号
         results.append([f"日期为{length}位的特殊符号F", self._random_string_multiple(['FH'], length)])
         # 22 日期为空值
@@ -452,22 +450,22 @@ class GetString:
         if length >= 2:
             results.append([f"生成{length}位大写字母、数字F", self._random_string_multiple(['ZMD', 'SZ'], length)])
         # 10生成length位全角数字
-        results.append([f"生成{length}位全角数字F", self._random_string_multiple(['QJSZ'], length)])
+        # results.append([f"生成{length}位全角数字F", self._random_string_multiple(['QJSZ'], length)])
         # 11生成length位的汉字
         if length >= 2:
             results.append([f"生成{math.floor(length/2)}位的汉字F", self._random_string_multiple(['HZ'], math.floor(length/2))])
         else:
             results.append([f"生成{length}位的汉字F", self._random_string_multiple(['HZ'], length)])
-        # 12生成length位的繁体字
-        if length >= 2:
-            results.append([f"生成{math.floor(length/2)}位的繁体字F", self._random_string_multiple(['FT'], math.floor(length/2))])
-        else:
-            results.append([f"生成{length}位的繁体字F", self._random_string_multiple(['FT'], length)])
-        # 13生成length位的难体字
-        if length >= 2:
-            results.append([f"生成{math.floor(length/2)}位的难体字F", self._random_string_multiple(['NT'], math.floor(length/2))])
-        else:
-            results.append([f"生成{length}位的难体字F", self._random_string_multiple(['NT'], length)])
+        # # 12生成length位的繁体字
+        # if length >= 2:
+        #     results.append([f"生成{math.floor(length/2)}位的繁体字F", self._random_string_multiple(['FT'], math.floor(length/2))])
+        # else:
+        #     results.append([f"生成{length}位的繁体字F", self._random_string_multiple(['FT'], length)])
+        # # 13生成length位的难体字
+        # if length >= 2:
+        #     results.append([f"生成{math.floor(length/2)}位的难体字F", self._random_string_multiple(['NT'], math.floor(length/2))])
+        # else:
+        #     results.append([f"生成{length}位的难体字F", self._random_string_multiple(['NT'], length)])
         # 14生成length位的特殊符号
         results.append([f"生成{length}位的特殊符号F", self._random_string_multiple(['FH'], length)])
         # 15生成空值
@@ -497,7 +495,7 @@ class GetString:
         # 4生成length位的负小数
         results.append([f"生成{length},{ndigit}位的负小数F", self._random_int_and_double(length - ndigit, ndigit) * -1])
         # 5生成length+1位的负小数
-        # results.append([f"生成{length+1}位的负数F", self._random_int_and_double(length+1,ndigit) * -1])
+        results.append([f"生成{length+1}位的负数F", self._random_int_and_double(length+1,ndigit) * -1])
         # 6生成length位的小写字母
         results.append([f"生成{length}位的小写字母F", self._random_string_multiple(['ZMX'], length)])
         # 7生成length位的大写字母
@@ -509,23 +507,22 @@ class GetString:
         if length >= 2:
             results.append([f"生成{length}位大写字母、数字F", self._random_string_multiple(['ZMD', 'SZ'], length)])
         # 10生成length位全角数字
-        results.append([f"生成{length}位全角数字F", self._random_string_multiple(['QJSZ'], length)])
+        # results.append([f"生成{length}位全角数字F", self._random_string_multiple(['QJSZ'], length)])
         # 11生成length位的汉字
         if length >= 2:
             results.append([f"生成{math.floor(length/2)}位的汉字F", self._random_string_multiple(['HZ'], math.floor(length/2))])
         else:
             results.append([f"生成{length}位的汉字F", self._random_string_multiple(['HZ'], length)])
         # 12生成length位的繁体字
-        if length >=2:
-            results.append([f"生成{math.floor(length/2)}位的繁体字F", self._random_string_multiple(['FT'], math.floor(length/2))])
-        else:
-            results.append([f"生成{length}位的繁体字F", self._random_string_multiple(['FT'], length)])
+        # if length >=2:
+        #     results.append([f"生成{math.floor(length/2)}位的繁体字F", self._random_string_multiple(['FT'], math.floor(length/2))])
+        # else:
+        #     results.append([f"生成{length}位的繁体字F", self._random_string_multiple(['FT'], length)])
         # 13生成length位的难体字
-        if length >= 2:
-            results.append([f"生成{math.floor(length/2)}位的难体字F", self._random_string_multiple(['NT'], math.floor(length/2))])
-        else:
-            results.append([f"生成{length}位的难体字F", self._random_string_multiple(['NT'], length)])
-
+        # if length >= 2:
+        #     results.append([f"生成{math.floor(length/2)}位的难体字F", self._random_string_multiple(['NT'], math.floor(length/2))])
+        # else:
+        #     results.append([f"生成{length}位的难体字F", self._random_string_multiple(['NT'], length)])
         # 14生成length位的特殊符号
         results.append([f"生成{length}位的特殊符号F", self._random_string_multiple(['FH'], length)])
         # 15生成空值

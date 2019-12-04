@@ -1,0 +1,7 @@
+2019-10-12 15:45:59,122 -logSetClass.py[line:70] -DEBUG:my debug
+2019-10-12 15:45:59,122 -logSetClass.py[line:71] -INFO:my info
+2019-10-12 15:45:59,123 -logSetClass.py[line:72] -WARNING:my warning
+2019-10-12 15:48:21,454 -logSetClass.py[line:68] -INFO:my info
+2019-10-12 15:48:21,455 -logSetClass.py[line:69] -WARNING:my warning
+2019-10-12 15:57:14,026 -logSetClass.py[line:73] -INFO:my info
+2019-10-12 15:57:14,026 -logSetClass.py[line:74] -WARNING:my warning

@@ -1,0 +1,9 @@
+2019-10-12 14:50:12,507 - log.py[line:24] - WARNING: warning
+2019-10-12 14:50:12,507 - log.py[line:25] - CRITICAL: critical
+2019-10-12 14:50:12,508 - log.py[line:26] - ERROR: error
+2019-10-12 14:51:54,873 - log.py[line:25] - WARNING: warning
+2019-10-12 14:51:54,873 - log.py[line:26] - CRITICAL: critical
+2019-10-12 14:51:54,873 - log.py[line:27] - ERROR: error
+2019-10-12 14:52:26,722 -log.py[line:24] -WARNING:warning
+2019-10-12 14:52:26,722 -log.py[line:25] -CRITICAL:critical
+2019-10-12 14:52:26,722 -log.py[line:26] -ERROR:error

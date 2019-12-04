@@ -15,7 +15,7 @@
 #         :return temp: 转换为json格式的内层报文，写入到数据库request_sql_param的内容
 
 
-import json,sys,os,time,random,copy
+import json,sys,os,time,random,copy,xlrd
 from tool.operateMysqlClass import OperateMysql
 # 添加tool工具包到系统变量中
 tool = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tool")
@@ -103,7 +103,6 @@ class Generator_ys_xxcx(Generator):
     def __init__(self):
         super().__init__()  # 初始化父类
 
-
     # 修改父类的update_temp_single方法
     def update_temp_single(self,temp,step,fphm,inner_key,inner_value):
         temp1 = copy.deepcopy(temp)
@@ -113,7 +112,6 @@ class Generator_ys_xxcx(Generator):
             os.exit(0)
             self.logger.error("inner_key:{} not found".format(inner_value))
         return json.dumps(temp1, ensure_ascii=False)
-
 
     # 修改父类的update_temp_multiple方法
     def update_temp_multiple(self,temp,step,fphm,inner_keys,inner_values):
@@ -137,7 +135,7 @@ class Generator_ys_xxsc(Generator):
         try:
             if inner_key != "bm":
                 temp1 = search_dict_key(temp1, inner_key, inner_value)
-                temp1["datagram"]["bm"] = step-40000
+                temp1["datagram"]["bm"] = str(step-40000)
             else:
                 temp1 = search_dict_key(temp1, inner_key, inner_value)
         except Exception:
@@ -170,7 +168,7 @@ class Generator_ys_xxxz(Generator):
             if inner_key != "bm":
                 temp1 = search_dict_key(temp1, inner_key, inner_value)
                 # 每次生成新的编号
-                #temp1["datagram"]["bm"] = str(step+10000)
+                # temp1["datagram"]["bm"] = str(step)
             else:
                 temp1 = search_dict_key(temp1, inner_key, inner_value)
         except Exception:
@@ -181,16 +179,17 @@ class Generator_ys_xxxz(Generator):
     # 修改父类的update_temp_multiple方法
     def update_temp_multiple(self, temp, step, fphm, inner_keys, inner_values):
         temp1 = copy.deepcopy(temp)
-        for i in range(len(inner_keys)):
-            temp1 = search_dict_key(temp1, inner_keys[i], inner_values[i])
+        temp1["datagram"][inner_keys[0]] = inner_values[0]
+        temp1["datagram"]["bm"] = str(step)
         return json.dumps(temp1, ensure_ascii=False)
 
 
 
-class Generator_ys_xxzj_pd(Generator):
+class Generator_ys_xxxz_pd(Generator):
 
     # 修改父类的模板
     # 51云税--客户信息新增与商品信息新增 铺底数据
+    # 需要修改“名称”字段
     def __init__(self):
         super().__init__()  # 初始化父类
 
@@ -201,7 +200,7 @@ class Generator_ys_xxzj_pd(Generator):
         self.logger.debug([case_datas, common_datas])
         step = int(common_datas["step"])
         length = int(common_datas["fphm_start"])
-        ghfmc = str(copy.deepcopy(self.temp['datagram']['ghfmc']))
+        ghfmc = str(copy.deepcopy(self.temp['datagram']['xmmc']))
         # 连接mysql数据库
         opsql = OperateMysql(self.logger)
         for l in range(1,length+1):
@@ -209,13 +208,13 @@ class Generator_ys_xxzj_pd(Generator):
             common_datas["step"] = step
             common_datas["request_name"] = common_datas["test_desc"] + "--" + str(l)
             self.temp['datagram']['bm'] = str(step)
-            self.temp['datagram']['ghfmc'] = ghfmc + str(step)
+            self.temp['datagram']['xmmc'] = ghfmc + str(step)
             common_datas["request_sql_param"] = json.dumps(self.temp, ensure_ascii=False)
             opsql.insert_sql(common_datas)
         opsql.close()
 
 
-class Generator_ys_xxzj_pd(Generator):
+class Generator_ys_xxsc_pd(Generator):
 
     # 修改父类的模板
     # 51云税--客户信息删除与商品信息删除 铺底数据
@@ -235,7 +234,69 @@ class Generator_ys_xxzj_pd(Generator):
             step += 1
             common_datas["step"] = step
             common_datas["request_name"] = common_datas["test_desc"] + "--" + str(l)
-            self.temp['datagram']['bm'] = str(step-40500)
+            self.temp['datagram']['bm'] = str(step -1000).zfill(5)
+            common_datas["request_sql_param"] = json.dumps(self.temp, ensure_ascii=False)
+            opsql.insert_sql(common_datas)
+        opsql.close()
+
+
+class Generator_ys_xxsc_pd_id(Generator):
+
+    # 修改父类的模板
+    # 51云税--客户信息与商品信息删除固定ID
+    # 新增的需要把下面的“每次生成新的编号”注释关闭
+    # 修改的如果不想变化编号，则把“每次生成新的编号”注释
+    def __init__(self):
+        super().__init__()  # 初始化父类
+
+
+    def generate_single_case(self):
+        single_case_path = os.path.join(self.generate_path, "data", self.single_case_excel)
+        case_datas, common_datas = self._read_single_excel(single_case_path)
+        self.logger.debug([case_datas, common_datas])
+        step = int(common_datas["step"])
+        wb = xlrd.open_workbook("./data/id.xls")
+        ws = wb.sheet_by_index(0)
+        max_row = ws.nrows
+        # 连接mysql数据库
+        opsql = OperateMysql(self.logger)
+        for l in range(max_row):
+            step += 1
+            common_datas["step"] = step
+            bm = ws.cell(l,0).value
+            common_datas["request_name"] = common_datas["test_desc"] + "-bm-" + str(bm)
+            if isinstance(bm,float):
+                self.temp['datagram']['bm'] = str(int(bm))
+            else:
+                self.temp['datagram']['bm'] = str(bm)
+            common_datas["request_sql_param"] = json.dumps(self.temp, ensure_ascii=False)
+            opsql.insert_sql(common_datas)
+        opsql.close()
+
+
+class Generator_ys_xxxz_pd_id(Generator):
+
+    # 修改父类的模板
+    # 51云税--客户信息与商品信息新增与删除固定ID
+    # 新增的需要把下面的“每次生成新的编号”注释关闭
+    # 修改的如果不想变化编号，则把“每次生成新的编号”注释
+    def __init__(self):
+        super().__init__()  # 初始化父类
+
+
+    def generate_single_case(self):
+        single_case_path = os.path.join(self.generate_path, "data", self.single_case_excel)
+        case_datas, common_datas = self._read_single_excel(single_case_path)
+        self.logger.debug([case_datas, common_datas])
+        step = int(common_datas["step"])
+        max_row = 1009
+        # 连接mysql数据库
+        opsql = OperateMysql(self.logger)
+        for l in range(max_row):
+            step += 1
+            common_datas["step"] = step
+            common_datas["request_name"] = common_datas["test_desc"] + "-bm-" + str(l)
+            self.temp['datagram']['bm'] = str(l+1000)
             common_datas["request_sql_param"] = json.dumps(self.temp, ensure_ascii=False)
             opsql.insert_sql(common_datas)
         opsql.close()
@@ -250,6 +311,10 @@ if __name__ == "__main__":
     # generate = Generator_tjcx_kpts()
     # generate.generate_single_case()
 
+    # 统一查询接口--发票号码查询
+    generate = Generator_tjcx_kpts()
+    generate.generate_single_case()
+
     # 非税接口
     # generate = Generator_fs()
     # generate.generate_single_case()  # 生成单个字段的用例
@@ -258,20 +323,29 @@ if __name__ == "__main__":
     # 51云税 客户信息查询/商品信息查询
     # generate = Generator_ys_xxcx()
     # generate.generate_single_case()  # 生成单个字段的用例
-    # generate.generate_multiple_case()  # 生成多字段用例
 
     # 51云税 客户信息删除/商品信息删除
     # generate = Generator_ys_xxsc()
     # generate.generate_single_case()
 
     # 51云税 客户信息新增、修改/商品信息新增、修改
-    generate = Generator_ys_xxxz()
-    generate.generate_single_case()
+    # generate = Generator_ys_xxxz()
+    # generate.generate_single_case()
+    # generate.generate_multiple_case()
 
     # 51云税 客户信息新增/商品信息新增（铺底数据）
-    # generate = Generator_ys_xxzj_pd()
+    # generate = Generator_ys_xxxz_pd()
     # generate.generate_single_case()
 
     # 51云税 客户信息删除/商品信息删除（铺底数据）
-    # generate = Generator_ys_xxzj_pd()
+    # generate = Generator_ys_xxsc_pd()
     # generate.generate_single_case()
+
+    # 51云税 客户信息删除/商品信息删除（铺底数据传入固定的bm）
+    # generate = Generator_ys_xxsc_pd_id()
+    # generate.generate_single_case()
+
+    # 51云税 客户信息删除/商品信息新增（铺底数据用于测试查询）
+    # generate = Generator_ys_xxxz_pd_id()
+    # generate.generate_single_case()
+
