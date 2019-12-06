@@ -5,7 +5,7 @@
 # @Desc  :自动生成单个字段的测试用例、根据excel表中的字段生成联合字段的测试用例及测试主流程
 
 
-import json,logging,xlrd,random,os
+import json,xlrd,os
 import configparser,copy,time
 from operateMysqlClass import OperateMysql
 from randomStringClass import GetString
